@@ -10,6 +10,8 @@ int error(char *s)
 int main(int ac, char **av)
 {
 	if (ac != 2)
-		return (error("AAA"));
+		return (error("\033[1;41mError arguments\033[0m"));
 	(void)av;
+	void *ptr = mlx_init();
+	(void)ptr;
 }

@@ -1,24 +1,22 @@
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -Iincludes #-g
 
-FILES = main.c
+FILES = main.c\
+		utils.c
 
-HEADERS = fdf.h
+HEADERS = includes/fdf.h\
 
-OBJS = $(SRCS:.cpp=.o)
-
+FILES_O = $(addprefix objs/, $(FILES))
 SRCS = $(addprefix srcs/, $(FILES))
-$OBJS = $(addprefix objs/, $(OBJS))
+OBJS = $(FILES_O:.c=.o)
+
+objs/%.o : srcs/%.c 
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-objs/%.o : srcs/%.c Makefile $(HEADERS) $(DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(DIR) :
-	mkdir objs
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) Makefile $(HEADERS) 
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 clean:

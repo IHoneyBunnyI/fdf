@@ -2,7 +2,8 @@
 
 int ft_strlen(char *s)
 {
-	int i = -1;
-	while (s[++i]);
+	int i = 0;
+	while (s[i])
+		i++;
 	return (i);
 }

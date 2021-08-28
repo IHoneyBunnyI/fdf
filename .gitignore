@@ -1,0 +1,6 @@
+*.o
+fdf
+a.out
+*.DS_Store
+objs/
+compile_flags.txt

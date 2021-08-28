@@ -4,17 +4,20 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 FILES = main.c
 
-SRCS = $(FILES)
-
 HEADERS = fdf.h
 
 OBJS = $(SRCS:.cpp=.o)
 
+SRCS = $(addprefix srcs/, $(FILES))
+$OBJS = $(addprefix objs/, $(OBJS))
+
 all: $(NAME)
 
-%.o : %.cpp Makefile $(HEADERS)
-	$(CXX) $(CFLAGS) -c $< -o $@
+objs/%.o : srcs/%.c Makefile $(HEADERS) $(DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
+$(DIR) :
+	mkdir objs
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 

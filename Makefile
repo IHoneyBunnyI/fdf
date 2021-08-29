@@ -1,6 +1,7 @@
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -Imlx#-g
+CFLAGS = -Wall -Wextra -Werror -Iincludes -Imlx #-g
+MLXFLAGS = -framework OpenGL -framework AppKit -Lmlx -lmlx
 MLX = mlx/libmlx.a
 MLX_D = mlx/
 
@@ -19,7 +20,7 @@ objs/%.o : srcs/%.c
 all: $(NAME)
 
 $(NAME) : $(MLX) $(OBJS) Makefile $(HEADERS) 
-	$(CC) $(CFLAGS) -o $(NAME) -framework OpenGL -framework AppKit -Lmlx -lmlx $(OBJS) 
+	$(CC) $(CFLAGS) -o $(NAME) $(MLXFLAGS) $(OBJS) 
 
 $(MLX):
 	$(MAKE) -C $(MLX_D) 2>/dev/null

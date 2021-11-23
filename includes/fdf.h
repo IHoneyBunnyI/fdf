@@ -1,6 +1,8 @@
 #ifndef FDF_H
 #define FDF_H 
 
+#define ERROR -1
+
 typedef struct mlx
 {
 	void *mlx_ptr;

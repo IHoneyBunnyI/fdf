@@ -1,12 +1,14 @@
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -Imlx #-g
+CFLAGS = -Wall -Wextra -Werror -Iincludes -Imlx -g
 MLXFLAGS = -framework OpenGL -framework AppKit -Lmlx -lmlx
 MLX = mlx/libmlx.a
 MLX_D = mlx/
 
 FILES = main.c\
-		utils.c
+		utils.c\
+		get_next_line.c\
+		get_next_line_utils.c\
 
 HEADERS = includes/fdf.h\
 

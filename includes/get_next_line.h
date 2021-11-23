@@ -11,5 +11,6 @@ int			find_n(char *cache);
 char		*ft_strchr(const char *s, int c);
 int			ft_strlen(char *s);
 char		*ft_strdup(char *s);
+int				get_next_line(int fd, char **line);
 
 #endif

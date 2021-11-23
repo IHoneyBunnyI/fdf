@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include <stdlib.h>
 
 int ft_strlen(char *s)
 {
@@ -54,7 +55,7 @@ static char		*get_split(const char *s, int i, char **split, int len)
 		while (split[i])
 			free(split[i++]);
 		free(split);
-		return (NULL);
+		return (0);
 	}
 	j = 0;
 	while (j < len)
@@ -72,10 +73,10 @@ char			**ft_split(char const *s, char c)
 	int		count;
 
 	if (!s)
-		return (NULL);
+		return (0);
 	count = wcount(s, c);
 	if (!(split = malloc(sizeof(char *) * (count + 1))))
-		return (NULL);
+		return (0);
 	i = -1;
 	j = 0;
 	while (++i < count)
@@ -84,9 +85,9 @@ char			**ft_split(char const *s, char c)
 			s++;
 		len = wlen(s, c);
 		if (!(split[i] = get_split(s, i, split, len)))
-			return (NULL);
+			return (0);
 		s += len;
 	}
-	split[i] = NULL;
+	split[i] = 0;
 	return (split);
 }

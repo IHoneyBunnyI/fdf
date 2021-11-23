@@ -4,3 +4,4 @@ a.out
 *.DS_Store
 objs/
 compile_flags.txt
+mlx/libmlx.a

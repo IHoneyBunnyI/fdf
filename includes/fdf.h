@@ -1,11 +1,12 @@
 #ifndef FDF_H
 #define FDF_H 
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "mlx.h"
+typedef struct mlx
+{
+	void *mlx_ptr;
+}	t_mlx;
 
-int		ft_strlen(char *s);
 char	**ft_split(char const *s, char c);
+int			ft_strlen(char *s);
 
 #endif

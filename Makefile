@@ -13,12 +13,15 @@ HEADERS = includes/fdf.h\
 FILES_O = $(addprefix objs/, $(FILES))
 SRCS = $(addprefix srcs/, $(FILES))
 OBJS = $(FILES_O:.c=.o)
+OBJDIR = objs/
 
 objs/%.o : srcs/%.c 
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(NAME)
+all: $(OBJDIR) $(NAME)
 
+$(OBJDIR):
+	@mkdir objs/
 $(NAME) : $(MLX) $(OBJS) Makefile $(HEADERS) 
 	$(CC) $(CFLAGS) -o $(NAME) $(MLXFLAGS) $(OBJS) 
 

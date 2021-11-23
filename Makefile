@@ -7,6 +7,7 @@ MLX_D = mlx/
 
 FILES = main.c\
 		utils.c\
+		utils_2.c\
 		get_next_line.c\
 		get_next_line_utils.c\
 

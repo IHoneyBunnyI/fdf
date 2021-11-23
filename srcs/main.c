@@ -28,25 +28,14 @@ int lenth_file(char *map_path)
 	close(fd_map);
 	return (len_file);
 }
-char** parse_map(char *map_path)
+
+void fill_map(char **map, int fd_map)
 {
-	char **map;
-	int fd_map;
-	int i;
-	int len_file;
 	char *line;
+	int i;
 
-	line = 0;
-	len_file = lenth_file(map_path);
-	if (len_file == ERROR)
-		return 0;
-
-	fd_map = open(map_path, O_RDONLY);
-	map = malloc(sizeof(char *) * (len_file + 1));
-	i = -1;
-	while (++i < len_file + 1)
-		map[i] = 0;
 	i = 0;
+	line = 0;
 	while (get_next_line(fd_map, &line))
 	{
 		map[i++] = ft_strdup(line);
@@ -54,15 +43,29 @@ char** parse_map(char *map_path)
 	}
 	free(line);
 	close(fd_map);
+}
+char** parse_map(char *map_path)
+{
+	char **map;
+	int fd_map;
+	/*int i;*/
+	int len_file;
+	char *line;
+
+	line = 0;
+	len_file = lenth_file(map_path);
+	if (len_file == ERROR)
+		return 0;
+	fd_map = open(map_path, O_RDONLY);
+	map = malloc_bzero(sizeof(char *) * (len_file + 1));
+	/*i = -1;*/
+	/*while (++i < len_file + 1)*/
+		/*map[i] = 0;*/
+	fill_map(map, fd_map);
+	/*printf("%d\n", len_file);*/
 	return (map);
 }
 
-int error(char *s)
-{
-	write(2, s, ft_strlen(s));
-	write(2, "\n", 1);
-	return (0);
-}
 
 void free_all(char **map)
 {
@@ -86,8 +89,10 @@ int main(int ac, char **av)
 	map = parse_map(av[1]);
 	if (!map)
 		return (error("\033[1;41mError map\033[0m"));
+
 	for (int j = 0; map[j]; j++)
 		printf("%d) %s\n", j, map[j]);
+
 	free_all(map);
 	(void)mlx;
 	/*mlx.mlx_ptr = mlx_init();*/

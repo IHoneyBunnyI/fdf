@@ -44,11 +44,28 @@ void fill_map(char **map, int fd_map)
 	free(line);
 	close(fd_map);
 }
+
+int check_map(char **map, int len_file)
+{
+	int i;
+	char **str_split_1;
+	char **str_split_2;
+
+	i = -1;
+	while (++i < len_file)
+	{
+		str_split_1 = ft_split(map[i], ' ');
+		str_split_2 = ft_split(map[2], ' ');
+		if (size(str_split_1) != size(str_split_2))
+				return ERROR;
+	}
+	return 0;
+}
+
 char** parse_map(char *map_path)
 {
 	char **map;
 	int fd_map;
-	/*int i;*/
 	int len_file;
 	char *line;
 
@@ -58,11 +75,9 @@ char** parse_map(char *map_path)
 		return 0;
 	fd_map = open(map_path, O_RDONLY);
 	map = malloc_bzero(sizeof(char *) * (len_file + 1));
-	/*i = -1;*/
-	/*while (++i < len_file + 1)*/
-		/*map[i] = 0;*/
 	fill_map(map, fd_map);
-	/*printf("%d\n", len_file);*/
+	if (check_map(map, len_file) == ERROR)
+		return 0;
 	return (map);
 }
 

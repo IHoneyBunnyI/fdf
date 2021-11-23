@@ -20,3 +20,13 @@ int error(char *s)
 	write(2, "\n", 1);
 	return (0);
 }
+
+int size(char **splitted)
+{
+	int i;
+
+	i = 0;
+	while (splitted[i])
+		i++;
+	return i;
+}

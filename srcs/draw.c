@@ -29,15 +29,17 @@ void fill_image(t_mlx *mlx)
 	}
 }
 
-int draw(t_fdf *fdf)
+int draw(t_fdf *fdf, t_mlx *mlx)
 {
-	t_map *map;
-	t_mlx *mlx;
-	t_keys *keys;
+	(void)fdf;
+	/*t_map *map;*/
+	/*t_mlx *mlx;*/
+	/*t_keys *keys;*/
 
-	init_map_mlx_keys(fdf, &map, &mlx, &keys);
+	/*init_map_mlx_keys(fdf, &map, &mlx, &keys);*/
 	/*fill_image(mlx);*/
 
+	/*mlx->endian = 0;*/
 	for (int i = 0; i < 100; i++)
 		pixel_put(mlx, i, i, 255);
 	/*mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);*/

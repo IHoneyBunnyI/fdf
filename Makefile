@@ -10,6 +10,9 @@ FILES = main.c\
 		utils_2.c\
 		get_next_line.c\
 		get_next_line_utils.c\
+		hooks.c\
+		draw.c\
+		mlx.c\
 
 HEADERS = includes/fdf.h\
 
@@ -18,7 +21,7 @@ SRCS = $(addprefix srcs/, $(FILES))
 OBJS = $(FILES_O:.c=.o)
 OBJDIR = objs/
 
-objs/%.o : srcs/%.c 
+objs/%.o : srcs/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(OBJDIR) $(NAME)

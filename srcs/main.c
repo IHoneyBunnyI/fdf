@@ -58,6 +58,8 @@ int check_map(char **map, int len_file)
 		str_split_2 = ft_split(map[2], ' ');
 		if (size(str_split_1) != size(str_split_2))
 				return ERROR;
+		free_split(str_split_1);
+		free_split(str_split_2);
 	}
 	return 0;
 }
@@ -81,35 +83,70 @@ char** parse_map(char *map_path)
 	return (map);
 }
 
-
-void free_all(char **map)
+void free_split(char **split)
 {
 	int i;
 
 	i = 0;
-	while (map[i])
+	while (split[i])
 	{
-		free(*(map + i));
+		free(*(split + i));
 		i++;
 	}
-	free(map);
+	free(split);
+}
+
+void mlx_start(t_mlx *mlx)
+{
+	mlx->ptr = mlx_init();
+	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, "fdf");
+	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
+	mlx->addr = mlx_get_data_addr(mlx->ptr, &(mlx->bpp), &(mlx->size_line), &(mlx->endian));
+	printf("before %d\n", mlx->size_line);
+}
+
+void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf)
+{
+	keys->esc = 0;
+	keys->w = 0;
+	keys->a = 0;
+	keys->s = 0;
+	keys->d = 0;
+	keys->left = 0;
+	keys->right = 0;
+	keys->up = 0;
+	keys->down = 0;
+	fdf->map = map;
+	fdf->mlx = mlx;
+	fdf->keys = keys;
+	fdf->pos_x = WIDTH / 2 - W_RECT;
+	fdf->pos_y = HEIGHT / 2 - W_RECT;
 }
 
 int main(int ac, char **av)
 {
-	char **map;
+	t_map map;
 	t_mlx mlx;
+	t_keys keys;
+	t_fdf fdf;
+
+	init(&map, &mlx, &keys, &fdf);
 	if (ac != 2)
 		return (error("\033[1;41mError arguments\033[0m"));
-	map = parse_map(av[1]);
-	if (!map)
+	map.map = parse_map(av[1]);
+	if (!map.map)
 		return (error("\033[1;41mError map\033[0m"));
 
-	for (int j = 0; map[j]; j++)
-		printf("%d) %s\n", j, map[j]);
 
-	free_all(map);
-	(void)mlx;
-	/*mlx.mlx_ptr = mlx_init();*/
+	mlx_start(&mlx);
+
+	mlx_hook(mlx.win, 17, 0, &cross_hook, &map);
+	mlx_hook(mlx.win, 2, 0, &key_down_hook, &keys);
+	mlx_hook(mlx.win, 3, 0, &key_up_hook, &keys);
+
+	mlx_loop_hook(mlx.ptr, &draw, &fdf);
+
+	mlx_loop(mlx.ptr);
+	/*free_all(map.map);*/
 	/*while (1) ;*/
 }

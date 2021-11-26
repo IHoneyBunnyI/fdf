@@ -14,7 +14,7 @@ FILES = main.c\
 		draw.c\
 		mlx.c\
 		bresenham.c\
-		#xiaolin.c\
+		xiaolin.c\
 
 HEADERS = includes/fdf.h\
 		  includes/get_next_line.h\

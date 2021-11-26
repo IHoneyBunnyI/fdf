@@ -7,6 +7,14 @@
 #define HEIGHT 600
 #define W_RECT 100
 
+
+typedef struct rgb_color
+{
+	int red;
+	int green;
+	int blue;
+} t_rgb_color;
+
 typedef struct mlx
 {
 	void *ptr;
@@ -70,6 +78,8 @@ void	pixel_put(t_mlx *mlx, int x, int y, int color);
 //int		color(int t, int r, int g, int b);
 int		color(int r, int g, int b);
 void draw_line_bresenham(t_mlx *mlx, t_point p0, t_point p1);
-void print_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2);
+//void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2);
+void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2, t_rgb_color c);
+t_rgb_color	rgb_color(int r, int g, int b);
 
 #endif

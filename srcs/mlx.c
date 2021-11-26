@@ -39,3 +39,13 @@ int		color(int r, int g, int b)
 	int t = 0;
 	return (t << 24 | r << 16 | g << 8 | b);
 }
+
+t_rgb_color	rgb_color(int r, int g, int b)
+{
+	t_rgb_color c;
+
+	c.red = r;
+	c.green = g;
+	c.blue = b;
+	return (c);
+}

@@ -12,17 +12,15 @@ void fill_image(t_mlx *mlx)
 {
 	int x;
 	int y;
-	int c;
 
 	x = 0;
 	y = 0;
 
-	c = color(101, 200, 120);
 	while (x < WIDTH)
 	{
 		while (y < HEIGHT)
 		{
-			pixel_put(mlx, x, y, c);
+			pixel_put(mlx, x, y, 0);
 			y++;
 		}
 		y = 0;
@@ -39,17 +37,33 @@ void put_rect(t_fdf *fdf, t_mlx *mlx)
 	int x =	fdf->pos_x - (W_RECT / 2);
 	int y =	fdf->pos_y - (W_RECT / 2);
 
+	/*int c = color(200, 100, 200);*/
+	int red = 200;
+	int green = 100;
+	int blue = 200;
 	while (x < fdf->pos_x + W_RECT / 2)
 	{
 		while (y < fdf->pos_y + W_RECT / 2)
 		{
 			/*pixel_put(mlx, x, y, color(0, rand() % 200, rand() % 100, rand() % 200));*/
-			pixel_put(mlx, x, y, color(200, 100, 200));
+			pixel_put(mlx, x, y, color(red--, green++, blue));
+			if (green == 255)
+				green = 100;
+			if (red == 0)
+				red = 200;
 			y++;
 		}
 		y = fdf->pos_y - (W_RECT / 2);
 		x++;
 	}
+}
+
+t_point make_point(int x, int y)
+{
+	t_point point;
+	point.x = x;
+	point.y = y;
+	return (point);
 }
 
 void check_keys(t_fdf *fdf, t_keys *keys)
@@ -82,27 +96,19 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	t_point point1;
 	t_point point2;
 
-	point1.x = 10;
-	point1.y = 10;
-	point2.x = 200;
-	point2.y = 100;
-
 	init_map_mlx_keys(fdf, &map, &mlx, &keys);
 	check_keys(fdf, keys);
 
 	fill_image(mlx);
 
 
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x = 100;
-	point1.y = 10;
-	point2.x = 200;
-	point2.y = 300;
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x = 400;
-	point1.y = 100;
-	point2.x = 250;
-	point2.y = 350;
+	t_rgb_color color = rgb_color(30, 200, 130);
+	point1 = make_point(0, 0);
+	point2 = make_point(WIDTH, HEIGHT);
+	draw_line_xiaolin_wu(mlx, point1, point2, color);
+
+	point1 = make_point(0, 30);
+	point2 = make_point(WIDTH, HEIGHT + 30);
 	draw_line_bresenham(mlx, point1, point2);
 
 	put_rect(fdf, mlx);

@@ -13,8 +13,11 @@ void	pixel_put(t_mlx *mlx, int x, int y, int color)
 	char	*dst;
 
 	/*mlx->size_line = 3200;*/
-	dst = mlx->addr + (y * mlx->size_line + x * (mlx->bpp / 8));
-	*(unsigned int*)dst = color;
+		if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+		{
+			dst = mlx->addr + (y * mlx->size_line + x * (mlx->bpp / 8));
+			*(unsigned int*)dst = color;
+		}
 }
 
 /*void	pixel_put(t_mlx *mlx, int x, int y, int color)*/
@@ -31,7 +34,8 @@ void	pixel_put(t_mlx *mlx, int x, int y, int color)
 	/*}*/
 /*}*/
 
-int		rgb_make(int t, int r, int g, int b)
+int		color(int r, int g, int b)
 {
+	int t = 0;
 	return (t << 24 | r << 16 | g << 8 | b);
 }

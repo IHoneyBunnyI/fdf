@@ -1,6 +1,6 @@
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -Imlx #-g
+CFLAGS = -Wall -Wextra -Werror -Iincludes -Imlx -g -fsanitize=address
 MLXFLAGS = -framework OpenGL -framework AppKit -Lmlx -lmlx
 MLX = mlx/libmlx.a
 MLX_D = mlx/
@@ -13,6 +13,8 @@ FILES = main.c\
 		hooks.c\
 		draw.c\
 		mlx.c\
+		bresenham.c\
+		#xiaolin.c\
 
 HEADERS = includes/fdf.h\
 		  includes/get_next_line.h\
@@ -22,14 +24,14 @@ SRCS = $(addprefix srcs/, $(FILES))
 OBJS = $(FILES_O:.c=.o)
 OBJDIR = objs/
 
-objs/%.o : srcs/%.c
+objs/%.o : srcs/%.c Makefile $(HEADERS) 
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(OBJDIR) $(NAME)
 
 $(OBJDIR):
 	@mkdir objs/
-$(NAME) : $(MLX) $(OBJS) Makefile $(HEADERS) 
+$(NAME) : $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(MLXFLAGS) $(OBJS) -Lmlx -lmlx
 
 $(MLX):

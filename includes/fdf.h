@@ -5,7 +5,7 @@
 #define ERROR -1
 #define WIDTH 800
 #define HEIGHT 600
-#define W_RECT 20
+#define W_RECT 100
 
 typedef struct mlx
 {
@@ -36,6 +36,14 @@ typedef struct keys
 	int down;
 }	t_keys;
 
+typedef struct point
+{
+	int x;
+	int y;
+	int z;
+	int color;
+}	t_point;
+
 typedef struct fdf
 {
 	t_mlx *mlx;
@@ -58,6 +66,10 @@ int key_up_hook(int key, t_keys *keys);
 int draw(t_fdf *fdf, t_mlx *mlx);
 //void	pixel_put(t_fdf *fdf, int x, int y, int color);
 void	pixel_put(t_mlx *mlx, int x, int y, int color);
-int		rgb_make(int t, int r, int g, int b);
+//int		rgb_make(int t, int r, int g, int b);
+//int		color(int t, int r, int g, int b);
+int		color(int r, int g, int b);
+void draw_line_bresenham(t_mlx *mlx, t_point p0, t_point p1);
+void print_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2);
 
 #endif

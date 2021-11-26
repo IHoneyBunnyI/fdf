@@ -102,12 +102,15 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	fill_image(mlx);
 
 
-	t_rgb_color color = rgb_color(30, 200, 130);
-	point1 = make_point(0, 0);
-	point2 = make_point(WIDTH, HEIGHT);
-	draw_line_xiaolin_wu(mlx, point1, point2, color);
+	/*t_rgb_color color = rgb_color(30, 200, 130);*/
+	/*point1 = make_point(0, 0);*/
+	/*point2 = make_point(WIDTH, HEIGHT);*/
+	/*draw_line_xiaolin_wu(mlx, point1, point2, color);*/
 
 	point1 = make_point(0, 30);
+	point1.color = 0xFFCC99;
+	point2.color = 0x993399;
+
 	point2 = make_point(WIDTH, HEIGHT + 30);
 	draw_line_bresenham(mlx, point1, point2);
 

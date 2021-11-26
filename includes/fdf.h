@@ -81,5 +81,8 @@ void draw_line_bresenham(t_mlx *mlx, t_point p0, t_point p1);
 //void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2);
 void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2, t_rgb_color c);
 t_rgb_color	rgb_color(int r, int g, int b);
+int	get_color(t_point current, t_point start, t_point end, t_point delta);
 
+
+void	draw_line(t_point f, t_point s, t_fdf *fdf);
 #endif

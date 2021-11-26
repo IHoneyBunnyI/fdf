@@ -108,10 +108,26 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	/*draw_line_xiaolin_wu(mlx, point1, point2, color);*/
 
 	point1 = make_point(0, 30);
-	point1.color = 0xFFCC99;
-	point2.color = 0x993399;
 
 	point2 = make_point(WIDTH, HEIGHT + 30);
+	point1.color = 0xFFCC99;
+	point2.color = 0x66FF33;
+	draw_line_bresenham(mlx, point1, point2);
+	point1.x++;
+	draw_line_bresenham(mlx, point1, point2);
+	point1.x++;
+	draw_line_bresenham(mlx, point1, point2);
+	point1.x++;
+	draw_line_bresenham(mlx, point1, point2);
+	point1.x++;
+	draw_line_bresenham(mlx, point1, point2);
+	point1.x++;
+	draw_line_bresenham(mlx, point1, point2);
+	point1.x++;
+	draw_line_bresenham(mlx, point1, point2);
+	point1.x++;
+	draw_line_bresenham(mlx, point1, point2);
+	point1.x++;
 	draw_line_bresenham(mlx, point1, point2);
 
 	put_rect(fdf, mlx);

@@ -70,20 +70,18 @@ void free_split(char **map);
 int cross_hook(t_map *map);
 int key_down_hook(int key, t_keys *keys);
 int key_up_hook(int key, t_keys *keys);
-//int draw(t_fdf *fdf);
 int draw(t_fdf *fdf, t_mlx *mlx);
-//void	pixel_put(t_fdf *fdf, int x, int y, int color);
 void	pixel_put(t_mlx *mlx, int x, int y, int color);
-//int		rgb_make(int t, int r, int g, int b);
-//int		color(int t, int r, int g, int b);
-int		color(int r, int g, int b);
+int		make_color(int r, int g, int b);
 void draw_line_bresenham(t_mlx *mlx, t_point p0, t_point p1);
 void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2);
-//void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2, t_rgb_color c);
 t_rgb_color	rgb_color(int r, int g, int b);
 int	get_color(t_point current, t_point start, t_point end, t_point delta);
+char** parse_map(char *map_path);
+void swap_(int *a, int *b);
 
 int	get_r(int color);
 int	get_g(int color);
 int	get_b(int color);
+void free_split(char **split);
 #endif

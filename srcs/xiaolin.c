@@ -1,14 +1,7 @@
 #include "fdf.h"
 #include <math.h>
+#include <stdlib.h>
 
-void swap_(int *a, int *b)
-{
-	int tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
 
 int ipart_(double x)
 {
@@ -44,7 +37,7 @@ void _dla_plot(t_mlx *mlx, int x, int y, t_rgb_color* col, float br)
 {
 	t_rgb_color oc;
 	_dla_changebrightness(col, &oc, br);
-	pixel_put(mlx, x, y, color(oc.red, oc.green, oc.blue));
+	pixel_put(mlx, x, y, make_color(oc.red, oc.green, oc.blue));
 }
 
 void plot_(t_mlx *mlx, int x,int y, double d, int c)
@@ -57,12 +50,8 @@ void plot_(t_mlx *mlx, int x,int y, double d, int c)
 	_dla_plot(mlx, x, y, &f, d);
 }
 
-
-#include <stdlib.h>
-
 void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2)
 {
-	/*int color_ = color(10, 100, 200);*/
 	double dx = (double)p2.x - p1.x;
 	double dy = (double)p2.y - p1.y;
 	t_point cur = p1;
@@ -90,8 +79,6 @@ void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2)
 		cur.x += sx;
 		plot_(mlx, xpxl1, ypxl1+1, fpart_(yend)*xgap, get_color(cur, p1, p2, delta));
 		cur.y += sy;
-		/*plot_(mlx, xpxl1, ypxl1, rfpart_(yend)*xgap, color_);*/
-		/*plot_(mlx, xpxl1, ypxl1+1, fpart_(yend)*xgap, color_);*/
 		double intery = yend + gradient;
 
 		xend = round_(p2.x);
@@ -100,22 +87,12 @@ void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2)
 		int xpxl2 = xend;
 		int ypxl2 = ipart_(yend);
 		plot_(mlx, xpxl2, ypxl2, rfpart_(yend) * xgap, get_color(cur, p1, p2, delta));
-		/*cur.x += sx;*/
-		/*cur.y += sy;*/
 		plot_(mlx, xpxl2, ypxl2 + 1, fpart_(yend) * xgap, get_color(cur, p1, p2, delta));
-		/*cur.x += sx;*/
-		/*cur.y += sy;*/
-		/*plot_(mlx, xpxl2, ypxl2, rfpart_(yend) * xgap, color_);*/
-		/*plot_(mlx, xpxl2, ypxl2 + 1, fpart_(yend) * xgap, color_);*/
 
 		int x;
 		for(x=xpxl1+1; x < xpxl2; x++) {
-			/*int dx = abs((p1.x - p0.x));*/
-			/*int sy = p1.y < p2.y ? 1 : -1;*/
 			plot_(mlx, x, ipart_(intery), rfpart_(intery), get_color(cur, p1, p2, delta));
 			plot_(mlx, x, ipart_(intery) + 1, fpart_(intery), get_color(cur, p1, p2, delta));
-			/*plot_(mlx, x, ipart_(intery), rfpart_(intery), color_);*/
-			/*plot_(mlx, x, ipart_(intery) + 1, fpart_(intery), color_);*/
 			intery += gradient;
 			cur.x += sx;
 		}

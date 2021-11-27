@@ -1,5 +1,8 @@
 #include "fdf.h"
 #include "mlx.h"
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
 
 void init_map_mlx_keys(t_fdf *fdf, t_map **map, t_mlx **mlx, t_keys **keys)
 {
@@ -28,47 +31,20 @@ void fill_image(t_mlx *mlx)
 	}
 }
 
-
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
-void put_rect(t_fdf *fdf, t_mlx *mlx)
-{
-	int x =	fdf->pos_x - (W_RECT / 2);
-	int y =	fdf->pos_y - (W_RECT / 2);
-
-	/*int c = color(200, 100, 200);*/
-	int red = 200;
-	int green = 100;
-	int blue = 200;
-	while (x < fdf->pos_x + W_RECT / 2)
-	{
-		while (y < fdf->pos_y + W_RECT / 2)
-		{
-			/*pixel_put(mlx, x, y, color(0, rand() % 200, rand() % 100, rand() % 200));*/
-			pixel_put(mlx, x, y, color(red--, green++, blue));
-			if (green == 255)
-				green = 100;
-			if (red == 0)
-				red = 200;
-			y++;
-		}
-		y = fdf->pos_y - (W_RECT / 2);
-		x++;
-	}
-}
-
-t_point make_point(int x, int y)
+t_point make_point(int x, int y, int color)
 {
 	t_point point;
 	point.x = x;
 	point.y = y;
+	if (color == 0)
+		point.color = make_color(255, 255, 255);
+	else
+		point.color = color;
 	return (point);
 }
 
 void check_keys(t_fdf *fdf, t_keys *keys)
 {
-	/*printf("x = %d, y = %d\n", fdf->pos_x, fdf->pos_y);*/
 	if (keys->w)
 		fdf->pos_y -= 10;
 	if (keys->s)
@@ -102,58 +78,45 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	fill_image(mlx);
 
 
-	/*point1 = make_point(0, 0);*/
-	/*point2 = make_point(WIDTH, HEIGHT);*/
-	point1 = make_point(WIDTH, 0);
-	point2 = make_point(0, HEIGHT);
-
-	/*point1.color = 0x00FF00;*/
-	/*point2.color = 0xFFFF99;*/
-
-	int i = 0;
-	for (int i = 0; i < 10; i++)
+	point1 = make_point(WIDTH / 2, HEIGHT / 2, 0xFF0000);
+	/*point2 = make_point(0, 0, make_color(0, 255, 0));*/
+	int r = 150;
+	point2.color = make_color(100, 20, 255);
+	for (int angle = 0; angle <= 360; angle += 2)
 	{
-		point1 = make_point(0 + i, 0);
-		point2 = make_point(WIDTH + i, HEIGHT);
-		point1.color = 0xFF0099;
-		point2.color = 0xFFFF00;
+		/*draw_line_bresenham(mlx, point1, point2);*/
+		point2.x = point1.x + r * cos((float)(((float)angle * 3.14)/180));
+		point2.y = point1.y + r * sin((float)(((float)angle * 3.14)/180));
+		/*point2.x = point1.x + r * cos(angle);*/
+		/*point2.y = point1.y + r * sin(angle);*/
 		draw_line_xiaolin_wu(mlx, point1, point2);
 	}
 
-	/*for (int i = 0; i < 10; i++)*/
-	/*{*/
-		point1 = make_point(30 + i, 0);
-		point2 = make_point(WIDTH + 30 + i, HEIGHT);
-		point1.color = 0xFF0099;
-		point2.color = 0xFFFF00;
-		draw_line_bresenham(mlx, point1, point2);
-	/*}*/
+	r = 50;
+	point1 = make_point(100, 100, 0x00FF00);
+	point2.color = make_color(180, 2, 60);
+	for (int angle = 0; angle <= 360; angle += 2)
+	{
+		/*draw_line_bresenham(mlx, point1, point2);*/
+		point2.x = point1.x + r * cos((float)(((float)angle * 3.14)/180));
+		point2.y = point1.y + r * sin((float)(((float)angle * 3.14)/180));
+		/*point2.x = point1.x + r * cos(angle);*/
+		/*point2.y = point1.y + r * sin(angle);*/
+		draw_line_xiaolin_wu(mlx, point1, point2);
+	}
 
-	/*for (int i = 0; i < 10; i++)*/
-	/*{*/
-		/*point1 = make_point(WIDTH + i, 0);*/
-		/*point2 = make_point(0 + i, HEIGHT);*/
-		/*point1.color = 0x00FF00;*/
-		/*point2.color = 0xFFFF99;*/
-		/*draw_line_xiaolin_wu(mlx, point1, point2);*/
-	/*}*/
-	/*for (int i = 0; i < 10; i++)*/
-	/*{*/
-		/*point1 = make_point(WIDTH + 15 + i, 0);*/
-		/*point2 = make_point(15 + i, HEIGHT);*/
-		/*point1.color = 0x00FF00;*/
-		/*point2.color = 0xFFFF99;*/
+	r = 50;
+	point1 = make_point(WIDTH - 100, 100, 0x00FF00);
+	point2.color = make_color(180, 2, 60);
+	for (int angle = 0; angle <= 360; angle += 2)
+	{
 		/*draw_line_bresenham(mlx, point1, point2);*/
-	/*}*/
-	/*for (int i = 0; i < 10; i++)*/
-	/*draw_line_bresenham(mlx, point1, point2);*/
-	/*while (point1.x < WIDTH)*/
-	/*{*/
-		/*draw_line_bresenham(mlx, point1, point2);*/
-		/*point1.x++;*/
-		/*point2.x++;*/
-	/*}*/
-	/*put_rect(fdf, mlx);*/
+		point2.x = point1.x + r * cos((float)(((float)angle * 3.14)/180));
+		point2.y = point1.y + r * sin((float)(((float)angle * 3.14)/180));
+		/*point2.x = point1.x + r * cos(angle);*/
+		/*point2.y = point1.y + r * sin(angle);*/
+		draw_line_xiaolin_wu(mlx, point1, point2);
+	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	return 1;
 }

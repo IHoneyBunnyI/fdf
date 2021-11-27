@@ -30,3 +30,25 @@ int size(char **splitted)
 		i++;
 	return i;
 }
+
+void swap_(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void free_split(char **split)
+{
+	int i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(*(split + i));
+		i++;
+	}
+	free(split);
+}

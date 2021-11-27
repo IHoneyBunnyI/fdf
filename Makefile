@@ -19,10 +19,14 @@ FILES =	color.c\
 		parse_map.c\
 		xiaolin.c\
 
-VPATH = srcs/colors/\
+#VPATH спецмальная переменная, в которой лежит список каталогов в которых следует выполнять поиск
+VPATH = srcs/\
+		srcs/colors/\
+		srcs/draw/\
 		srcs/gnl/\
+		srcs/hooks\
+		srcs/parser/\
 		srcs/utils\
-		srcs/\
 
 HEADERS = includes/fdf.h\
 		  includes/get_next_line.h\

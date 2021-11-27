@@ -5,28 +5,34 @@ MLXFLAGS = -framework OpenGL -framework AppKit -Lmlx -lmlx
 MLX_D = mlx/
 MLX = $(MLX_D)libmlx.a
 
-FILES = main.c\
-		utils.c\
-		utils_2.c\
+FILES =	color.c\
+		color_gets.c\
 		get_next_line.c\
 		get_next_line_utils.c\
-		hooks.c\
-		draw.c\
-		mlx.c\
+		utils.c\
+		utils_2.c\
 		bresenham.c\
-		xiaolin.c\
-		color.c\
+		draw.c\
+		hooks.c\
+		main.c\
+		mlx.c\
 		parse_map.c\
+		xiaolin.c\
+
+VPATH = srcs/colors/\
+		srcs/gnl/\
+		srcs/utils\
+		srcs/\
 
 HEADERS = includes/fdf.h\
 		  includes/get_next_line.h\
 
-FILES_O = $(addprefix objs/, $(FILES))
+FILES_O = $(addprefix objs/, $(notdir $(FILES)))
 SRCS = $(addprefix srcs/, $(FILES))
 OBJS = $(FILES_O:.c=.o)
 OBJDIR = objs/
 
-objs/%.o : srcs/%.c Makefile $(HEADERS) 
+objs/%.o : %.c Makefile $(HEADERS) 
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(OBJDIR) $(NAME)

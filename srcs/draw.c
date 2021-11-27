@@ -73,9 +73,8 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	t_point point2;
 
 	init_map_mlx_keys(fdf, &map, &mlx, &keys);
-	check_keys(fdf, keys);
-
 	fill_image(mlx);
+	check_keys(fdf, keys);
 
 
 	point1 = make_point(WIDTH / 2, HEIGHT / 2, 0xFF0000);

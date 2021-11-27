@@ -102,35 +102,58 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	fill_image(mlx);
 
 
-	/*t_rgb_color color = rgb_color(30, 200, 130);*/
 	/*point1 = make_point(0, 0);*/
 	/*point2 = make_point(WIDTH, HEIGHT);*/
-	/*draw_line_xiaolin_wu(mlx, point1, point2, color);*/
+	point1 = make_point(WIDTH, 0);
+	point2 = make_point(0, HEIGHT);
 
-	point1 = make_point(0, 30);
+	/*point1.color = 0x00FF00;*/
+	/*point2.color = 0xFFFF99;*/
 
-	point2 = make_point(WIDTH, HEIGHT + 30);
-	point1.color = 0xFFCC99;
-	point2.color = 0x66FF33;
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x++;
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x++;
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x++;
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x++;
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x++;
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x++;
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x++;
-	draw_line_bresenham(mlx, point1, point2);
-	point1.x++;
-	draw_line_bresenham(mlx, point1, point2);
+	int i = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		point1 = make_point(0 + i, 0);
+		point2 = make_point(WIDTH + i, HEIGHT);
+		point1.color = 0xFF0099;
+		point2.color = 0xFFFF00;
+		draw_line_xiaolin_wu(mlx, point1, point2);
+	}
 
-	put_rect(fdf, mlx);
+	/*for (int i = 0; i < 10; i++)*/
+	/*{*/
+		point1 = make_point(30 + i, 0);
+		point2 = make_point(WIDTH + 30 + i, HEIGHT);
+		point1.color = 0xFF0099;
+		point2.color = 0xFFFF00;
+		draw_line_bresenham(mlx, point1, point2);
+	/*}*/
+
+	/*for (int i = 0; i < 10; i++)*/
+	/*{*/
+		/*point1 = make_point(WIDTH + i, 0);*/
+		/*point2 = make_point(0 + i, HEIGHT);*/
+		/*point1.color = 0x00FF00;*/
+		/*point2.color = 0xFFFF99;*/
+		/*draw_line_xiaolin_wu(mlx, point1, point2);*/
+	/*}*/
+	/*for (int i = 0; i < 10; i++)*/
+	/*{*/
+		/*point1 = make_point(WIDTH + 15 + i, 0);*/
+		/*point2 = make_point(15 + i, HEIGHT);*/
+		/*point1.color = 0x00FF00;*/
+		/*point2.color = 0xFFFF99;*/
+		/*draw_line_bresenham(mlx, point1, point2);*/
+	/*}*/
+	/*for (int i = 0; i < 10; i++)*/
+	/*draw_line_bresenham(mlx, point1, point2);*/
+	/*while (point1.x < WIDTH)*/
+	/*{*/
+		/*draw_line_bresenham(mlx, point1, point2);*/
+		/*point1.x++;*/
+		/*point2.x++;*/
+	/*}*/
+	/*put_rect(fdf, mlx);*/
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	return 1;
 }

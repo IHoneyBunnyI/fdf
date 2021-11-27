@@ -5,3 +5,4 @@ a.out
 objs/
 compile_flags.txt
 mlx/libmlx.a
+mlx_2/libmlx.a

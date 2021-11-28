@@ -28,37 +28,46 @@ int get_color_from_map(char *s)
 	return color;
 }
 
+#include <math.h>
 t_point **parse_points(t_map *map)
 {
 	t_point **points;
-	int i;
-	int j;
+	int y;
+	int x;
 	char **split;
 
 	points = malloc(sizeof(t_point *) * (map->height_map + 1));
 	points[map->height_map] = 0;
-	i = -1;
-	while (++i < map->height_map)
-		points[i] = malloc(sizeof(t_point) * (map->width_map + 1));
-	i = -1;
-	while (map->map[++i])
+	y = -1;
+	while (++y < map->height_map)
+		points[y] = malloc(sizeof(t_point) * (map->width_map + 1));
+	y = -1;
+	while (map->map[++y])
 	{
-		j = -1;
+		x = -1;
 		/*printf("%s\n", map->map[i]);*/
-		split = ft_split(map->map[i], ' ');
-		while (split[++j])
+		split = ft_split(map->map[y], ' ');
+		while (split[++x])
 		{
-			if (find_color(split[j]))
-				points[i][j].color = get_color_from_map(split[j]);
+			if (find_color(split[x]))
+				points[y][x].color = get_color_from_map(split[x]);
 			else
-				points[i][j].color = make_color(255, 255, 255);
-			points[i][j].x = (j - i) * 30 + WIDTH / 2;
-			points[i][j].y =  (j + i) * 15;
-			points[i][j].z = ft_atoi(split[j]);
+				points[y][x].color = make_color(255, 255, 255);
 
-			/*points[i][j].x = j * 30;*/
-			/*points[i][j].y =  i * 30;*/
-			/*points[i][j].z = ft_atoi(split[j]);*/
+			//without z
+			/*points[y][x].z = ft_atoi(split[x]);*/
+			/*points[y][x].x = (x - y) * 30 + WIDTH / 2;*/
+			/*points[y][x].y =  (x + y) * 15  + HEIGHT / 3;*/
+
+			//non izometric
+			/*points[i][x].x = x * 30;*/
+			/*points[i][x].y =  i * 30;*/
+			/*points[i][x].z = ft_atoi(split[x]);*/
+
+			//with z
+			points[y][x].z = ft_atoi(split[x]);
+			points[y][x].x = (x - y) * 30 + WIDTH / 2;
+			points[y][x].y =  ((x + y) - points[y][x].z) * 15  + HEIGHT / 3;
 		}
 	}
 	return points;

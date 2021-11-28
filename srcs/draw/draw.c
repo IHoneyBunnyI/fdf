@@ -71,10 +71,14 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 		{
 			if (i == map->height_map - 2)
 				draw_line_xiaolin_wu(mlx, points[i + 1][j], points[i + 1][j + 1]);
+				/*draw_line_bresenham(mlx, points[i + 1][j], points[i + 1][j + 1]);*/
 			if (j == map->width_map - 2)
 				draw_line_xiaolin_wu(mlx, points[i][j + 1], points[i + 1][j + 1]);
+				/*draw_line_bresenham(mlx, points[i][j + 1], points[i + 1][j + 1]);*/
 			draw_line_xiaolin_wu(mlx, points[i][j], points[i][j + 1]);
 			draw_line_xiaolin_wu(mlx, points[i][j], points[i + 1][j]);
+			/*draw_line_bresenham(mlx, points[i][j], points[i][j + 1]);*/
+			/*draw_line_bresenham(mlx, points[i][j], points[i + 1][j]);*/
 		}
 	}
 

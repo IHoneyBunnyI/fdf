@@ -51,6 +51,7 @@ int main(int ac, char **av)
 		/*for (int j = 0; j < fdf.map->width_map; j++)*/
 		/*{*/
 			/*printf("x(%d)y(%d)z(%d) ", fdf.points[i][j].x, fdf.points[i][j].y, fdf.points[i][j].z);*/
+			/*printf("r(%d)g(%d)b(%d) ", get_r(fdf.points[i][j].color), get_g(fdf.points[i][j].color), get_b(fdf.points[i][j].color));*/
 		/*}*/
 		/*printf("\n");*/
 	/*}*/
@@ -60,7 +61,7 @@ int main(int ac, char **av)
 	mlx_hook(mlx.win, 2, 0, &key_down_hook, &keys);
 	mlx_hook(mlx.win, 3, 0, &key_up_hook, &keys);
 
-	/*mlx_loop_hook(mlx.ptr, &draw, &fdf);*/
+	mlx_loop_hook(mlx.ptr, &draw, &fdf);
 
 	free_split(map.map);
 	mlx_loop(mlx.ptr);

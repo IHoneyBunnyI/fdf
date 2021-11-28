@@ -3,8 +3,8 @@
 #include <stdio.h> //for size_t
 
 #define ERROR -1
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 1280
+#define HEIGHT 720
 #define W_RECT 100
 
 typedef struct rgb_color
@@ -91,4 +91,7 @@ int	get_b(int color);
 t_point **parse_points(t_map *map);
 int is_num_or_minus(char c);
 int		ft_atoi(const char *str);
+int	ft_toupper(int c);
+int	ft_check_hex(char n);
+int	ft_convert_color(char *s);
 #endif

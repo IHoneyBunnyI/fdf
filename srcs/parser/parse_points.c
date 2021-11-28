@@ -52,13 +52,13 @@ t_point **parse_points(t_map *map)
 				points[i][j].color = get_color_from_map(split[j]);
 			else
 				points[i][j].color = make_color(255, 255, 255);
-			/*points[i][j].x = (j - i) * 30 + WIDTH / 2;*/
-			/*points[i][j].y =  (j + i) * 15;*/
-			/*points[i][j].z = ft_atoi(split[j]);*/
-
-			points[i][j].x = j * 30;
-			points[i][j].y =  i * 30;
+			points[i][j].x = (j - i) * 30 + WIDTH / 2;
+			points[i][j].y =  (j + i) * 15;
 			points[i][j].z = ft_atoi(split[j]);
+
+			/*points[i][j].x = j * 30;*/
+			/*points[i][j].y =  i * 30;*/
+			/*points[i][j].z = ft_atoi(split[j]);*/
 		}
 	}
 	return points;

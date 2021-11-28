@@ -27,7 +27,6 @@ void _dla_changebrightness(t_rgb_color* from, t_rgb_color* to, float br)
 {
 	if (br > 1.0)
 		br = 1.0;
-	/* linear... Maybe something more complex could give better look */
 	to->red = br * (float)from->red;
 	to->green = br * (float)from->green;
 	to->blue = br * (float)from->blue;

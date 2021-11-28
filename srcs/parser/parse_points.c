@@ -45,7 +45,6 @@ t_point **parse_points(t_map *map)
 	while (map->map[++y])
 	{
 		x = -1;
-		/*printf("%s\n", map->map[i]);*/
 		split = ft_split(map->map[y], ' ');
 		while (split[++x])
 		{
@@ -53,21 +52,9 @@ t_point **parse_points(t_map *map)
 				points[y][x].color = get_color_from_map(split[x]);
 			else
 				points[y][x].color = make_color(255, 255, 255);
-
-			//without z
-			/*points[y][x].z = ft_atoi(split[x]);*/
-			/*points[y][x].x = (x - y) * 30 + WIDTH / 2;*/
-			/*points[y][x].y =  (x + y) * 15  + HEIGHT / 3;*/
-
-			//non izometric
 			points[y][x].x = x;
 			points[y][x].y = y;
 			points[y][x].z = ft_atoi(split[x]);
-
-			//with z
-			/*points[y][x].z = ft_atoi(split[x]);*/
-			/*points[y][x].x = (x - y) * 30 + WIDTH / 2;*/
-			/*points[y][x].y =  ((x + y) - points[y][x].z) * 15  + HEIGHT / 3;*/
 		}
 	}
 	return points;

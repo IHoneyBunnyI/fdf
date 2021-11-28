@@ -41,17 +41,26 @@ int main(int ac, char **av)
 	init(&map, &mlx, &keys, &fdf);
 	/*if (ac != 2)*/
 		/*return (error("\033[1;41mError arguments\033[0m"));*/
-	map.map = parse_map(av[1]);
+	map = parse_map(av[1]);
 	if (!map.map)
 		return (error("\033[1;41mError map\033[0m"));
+	fdf.points = parse_points(&map);
 
+	/*for (int i = 0; fdf.points[i]; i++)*/
+	/*{*/
+		/*for (int j = 0; j < fdf.map->width_map; j++)*/
+		/*{*/
+			/*printf("x(%d)y(%d)z(%d) ", fdf.points[i][j].x, fdf.points[i][j].y, fdf.points[i][j].z);*/
+		/*}*/
+		/*printf("\n");*/
+	/*}*/
 	mlx_start(&mlx);
 
 	mlx_hook(mlx.win, 17, 0, &cross_hook, &map);
 	mlx_hook(mlx.win, 2, 0, &key_down_hook, &keys);
 	mlx_hook(mlx.win, 3, 0, &key_up_hook, &keys);
 
-	mlx_loop_hook(mlx.ptr, &draw, &fdf);
+	/*mlx_loop_hook(mlx.ptr, &draw, &fdf);*/
 
 	free_split(map.map);
 	mlx_loop(mlx.ptr);

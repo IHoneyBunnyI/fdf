@@ -28,6 +28,8 @@ typedef struct mlx
 typedef struct map
 {
 	char **map;
+	int width_map;
+	int height_map;
 }	t_map;
 
 typedef struct keys
@@ -56,6 +58,7 @@ typedef struct fdf
 	t_mlx *mlx;
 	t_map *map;
 	t_keys *keys;
+	t_point **points;
 	int pos_x;
 	int pos_y;
 }	t_fdf;
@@ -75,7 +78,8 @@ int		make_color(int r, int g, int b);
 void draw_line_bresenham(t_mlx *mlx, t_point p0, t_point p1);
 void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2);
 int	get_color(t_point current, t_point start, t_point end, t_point delta);
-char** parse_map(char *map_path);
+//char** parse_map(char *map_path);
+t_map parse_map(char *map_path);
 void swap_(int *a, int *b);
 int	get_r(int color);
 int	get_g(int color);
@@ -84,4 +88,7 @@ void free_split(char **split);
 int	get_r(int color);
 int	get_g(int color);
 int	get_b(int color);
+t_point **parse_points(t_map *map);
+int is_num_or_minus(char c);
+int		ft_atoi(const char *str);
 #endif

@@ -43,41 +43,67 @@ void fill_map(char **map, int fd_map)
 	close(fd_map);
 }
 
-int check_map(char **map, int len_file)
+int wrong_characters(char **split_str)
 {
+	int split;
 	int i;
-	char **str_split_1;
-	char **str_split_2;
 
-	i = -1;
-	while (++i < len_file)
+	split = -1;
+	while (split_str[++split])
 	{
-		str_split_1 = ft_split(map[i], ' ');
-		str_split_2 = ft_split(map[2], ' ');
-		if (size(str_split_1) != size(str_split_2))
-				return ERROR;
-		free_split(str_split_1);
-		free_split(str_split_2);
+		i = -1;
+		while (split_str[split][++i] != ',' && split_str[split][i])
+		{
+			if (!is_num_or_minus(split_str[split][i]))
+				return 1;
+		}
 	}
 	return 0;
 }
 
-char** parse_map(char *map_path)
+int check_map(t_map *map, int len_file)
 {
-	char **map;
+	int i;
+	int width;
+	char **str_split_1;
+	char **str_split_2;
+
+	str_split_1 = ft_split(map->map[0], ' ');
+	width = size(str_split_1);
+	i = -1;
+	while (++i < len_file)
+	{
+		str_split_2 = ft_split(map->map[i], ' ');
+		if (width != size(str_split_2) || wrong_characters(str_split_2))
+				return ERROR;
+		free_split(str_split_2);
+	}
+	map->width_map = width;
+	free_split(str_split_1);
+	return 0;
+}
+
+t_map parse_map(char *map_path)
+{
+	t_map map;
 	int fd_map;
-	int len_file;
 	char *line;
 
 	line = 0;
-	len_file = lenth_file(map_path);
-	if (len_file == ERROR)
-		return 0;
+	map.height_map = lenth_file(map_path);
+	if (map.height_map == ERROR)
+	{
+		map.map = 0;
+		return map;
+	}
 	fd_map = open(map_path, O_RDONLY);
-	map = malloc_bzero(sizeof(char *) * (len_file + 1));
-	fill_map(map, fd_map);
-	if (check_map(map, len_file) == ERROR)
-		return 0;
+	map.map = malloc_bzero(sizeof(char *) * (map.height_map + 1));
+	fill_map(map.map, fd_map);
+	if (check_map(&map, map.height_map) == ERROR)
+	{
+		map.map = 0;
+		return map;
+	}
 	return (map);
 }
 

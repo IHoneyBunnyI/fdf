@@ -13,11 +13,14 @@ FILES =	color.c\
 		utils_2.c\
 		bresenham.c\
 		draw.c\
-		hooks.c\
+		keyboard_hooks.c\
+		mouse_hooks.c\
 		main.c\
 		mlx.c\
 		parse_map.c\
 		xiaolin.c\
+		parse_points.c\
+		utils_parser.c\
 
 #VPATH спецмальная переменная, в которой лежит список каталогов в которых следует выполнять поиск
 VPATH = srcs/\

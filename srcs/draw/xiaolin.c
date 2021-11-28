@@ -50,8 +50,31 @@ void plot_(t_mlx *mlx, int x,int y, double d, int c)
 	_dla_plot(mlx, x, y, &f, d);
 }
 
-void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2)
+void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1_in, t_point p2_in)
 {
+	int x1;
+	int x2;
+	int y1;
+	int y2;
+
+	x1 = p1_in.x;
+	x2 = p2_in.x;
+	y1 = p1_in.y;
+	y2 = p2_in.y;
+
+	t_point p1;
+	t_point p2;
+	p1.color = p1_in.color;
+	p2.color = p2_in.color;
+	p1.x = (x1 - y1) * 30 + WIDTH / 2;
+	p1.y =  ((x1 + y1) - p1_in.z) * 15  + HEIGHT / 3;
+
+	p2.x = (x2 - y2) * 30 + WIDTH / 2;
+	p2.y =  ((x2 + y2) - p2_in.z) * 15  + HEIGHT / 3;
+
+
+
+
 	double dx = (double)p2.x - p1.x;
 	double dy = (double)p2.y - p1.y;
 	t_point cur = p1;

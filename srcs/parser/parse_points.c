@@ -55,7 +55,6 @@ t_point **parse_points(t_map *map)
 			points[y][x].x = x * map->square_size;
 			points[y][x].y = y * map->square_size;
 			points[y][x].z = ft_atoi(split[x]) * map->square_size;
-
 			points[y][x].x -= (map->width_map * map->square_size) / 2;
 			points[y][x].y -= (map->height_map * map->square_size) / 2;
 		}

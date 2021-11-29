@@ -32,8 +32,6 @@ typedef struct map
 	int max_z;
 	int min_z;
 	int square_size;
-	int offset_x;
-	int offset_y;
 	float angle_x;
 	float angle_y;
 }	t_map;
@@ -51,6 +49,13 @@ typedef struct keys
 	int down;
 	int plus;
 	int minus;
+	int alpha_plus;
+	int alpha_minus;
+	int beta_plus;
+	int beta_minus;
+	int gamma_plus;
+	int gamma_minus;
+	int is_isometric;
 }	t_keys;
 
 typedef struct point
@@ -66,6 +71,8 @@ typedef struct s_camera
 	float alpha;
 	float beta;
 	float gamma;
+	int offset_x;
+	int offset_y;
 } t_camera;
 
 typedef struct fdf

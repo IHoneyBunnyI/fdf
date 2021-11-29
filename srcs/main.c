@@ -11,7 +11,7 @@ void mlx_start(t_mlx *mlx)
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->size_line, &mlx->endian);
 }
 
-void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf)
+void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera)
 {
 	keys->esc = 0;
 	keys->w = 0;
@@ -25,11 +25,16 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf)
 	fdf->map = map;
 	fdf->mlx = mlx;
 	fdf->keys = keys;
+	fdf->camera = camera;
 	fdf->map->square_size = 0;
 	fdf->map->offset_x = 0;
 	fdf->map->offset_y = 0;
 	fdf->map->angle_x = 0;
 	fdf->map->angle_y = 0;
+
+	fdf->camera->alpha = 0;
+	fdf->camera->beta = 0;
+	fdf->camera->gamma = 0;
 }
 
 int main(int ac, char **av)
@@ -37,11 +42,12 @@ int main(int ac, char **av)
 	t_map map;
 	t_mlx mlx;
 	t_keys keys;
+	t_camera camera;
 	t_fdf fdf;
 
 	if (ac == 1)
 		av[1] = ft_strdup("./test.fdf");
-	init(&map, &mlx, &keys, &fdf);
+	init(&map, &mlx, &keys, &fdf, &camera);
 	/*if (ac != 2)*/
 		/*return (error("\033[1;41mError arguments\033[0m"));*/
 	map = parse_map(av[1]);
@@ -49,15 +55,6 @@ int main(int ac, char **av)
 		return (error("\033[1;41mError map\033[0m"));
 	fdf.points = parse_points(&map);
 
-	/*for (int i = 0; fdf.points[i]; i++)*/
-	/*{*/
-		/*for (int j = 0; j < fdf.map->width_map; j++)*/
-		/*{*/
-			/*printf("x(%d)y(%d)z(%d) ", fdf.points[i][j].x, fdf.points[i][j].y, fdf.points[i][j].z);*/
-			/*printf("r(%d)g(%d)b(%d) ", get_r(fdf.points[i][j].color), get_g(fdf.points[i][j].color), get_b(fdf.points[i][j].color));*/
-		/*}*/
-		/*printf("\n");*/
-	/*}*/
 	mlx_start(&mlx);
 
 	mlx_hook(mlx.win, 17, 0, &cross_hook, &map);

@@ -61,11 +61,19 @@ typedef struct point
 	int color;
 }	t_point;
 
+typedef struct s_camera
+{
+	float alpha;
+	float beta;
+	float gamma;
+} t_camera;
+
 typedef struct fdf
 {
 	t_mlx *mlx;
 	t_map *map;
 	t_keys *keys;
+	t_camera *camera;
 	t_point **points;
 }	t_fdf;
 

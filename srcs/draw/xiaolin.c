@@ -108,6 +108,8 @@ void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
 	p1.y *= map->square_size;
 	p2.x *= map->square_size;
 	p2.y *= map->square_size;
+	p1.z *= map->square_size;
+	p2.z *= map->square_size;
 
 	rotate_x(&p1, fdf->camera->alpha);
 	rotate_x(&p2, fdf->camera->alpha);
@@ -132,6 +134,11 @@ void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
 
 	p1.y = (prev_1_x + prev_1_y -p1.z) * sin(0.523599);
 	p2.y = (prev_2_x + prev_2_y -p2.z) * sin(0.523599);
+
+	p1.x += /*(WIDTH / 2) + */fdf->map->offset_x;
+	p2.x += /*(WIDTH / 2) +  */fdf->map->offset_x;
+	p1.y += /*(HEIGHT + fdf->map->height_map * fdf->map->square_size) / 2 + */fdf->map->offset_y;
+	p2.y += /*(HEIGHT + fdf->map->height_map * fdf->map->square_size) / 2 + */fdf->map->offset_y;
 	/*p1.x = (x1 - y1) * cos(0.523599) + map->offset_x;*/
 	/*p1.y =  ((x1 + y1) - p1.z) *sin(0.523599) + map->offset_y;*/
 

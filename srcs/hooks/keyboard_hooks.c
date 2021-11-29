@@ -48,8 +48,10 @@ int key_down_hook(int key, t_keys *keys)
 		keys->gamma_minus = 1;
 	if (key == 85)
 		keys->gamma_plus= 1;
-	if (key == 34 || key == 87)
+	if (key == 34)
 		keys->is_isometric = 1;
+	if (key == 35)
+		keys->is_parralel = 1;
 	return (0);
 }
 
@@ -93,7 +95,9 @@ int key_up_hook(int key, t_keys *keys)
 		keys->gamma_minus = 0;
 	if (key == 85)
 		keys->gamma_plus= 0;
-	if (key == 34 || key == 87)
+	if (key == 34)
 		keys->is_isometric = 0;
+	if (key == 35)
+		keys->is_parralel = 0;
 	return (0);
 }

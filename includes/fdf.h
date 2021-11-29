@@ -56,6 +56,7 @@ typedef struct keys
 	int gamma_plus;
 	int gamma_minus;
 	int is_isometric;
+	int is_parralel;
 }	t_keys;
 
 typedef struct point

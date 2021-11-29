@@ -18,23 +18,14 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 			fdf->map->offset_y -= 3;
 	if (keys->s)
 		fdf->map->offset_y += 3;
-	if (keys->right)
-	{
-		fdf->map->angle_x += 0.015;
-	}
-	if (keys->left)
-	{
-		fdf->map->angle_x -= 0.015;
-	}
-	if (keys->up)
-		fdf->map->angle_y -= 0.015;
-	if (keys->down)
-		fdf->map->angle_y += 0.015;
-
 
 	if (keys->up)
 		fdf->camera->alpha += 0.05;
 	if (keys->down)
 		fdf->camera->alpha -= 0.05;
+	if (keys->right)
+		fdf->camera->beta += 0.05;
+	if (keys->left)
+		fdf->camera->beta -= 0.05;
 }
 

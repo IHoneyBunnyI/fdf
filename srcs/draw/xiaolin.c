@@ -111,6 +111,11 @@ void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
 	p1.z *= map->square_size;
 	p2.z *= map->square_size;
 
+	p1.x -= (fdf->map->width_map * fdf->map->square_size) / 2;
+	p2.x -= (fdf->map->width_map * fdf->map->square_size) / 2;
+	p1.y -= (fdf->map->height_map * fdf->map->square_size) / 2;
+	p2.y -= (fdf->map->height_map * fdf->map->square_size) / 2;
+
 	rotate_x(&p1, fdf->camera->alpha);
 	rotate_x(&p2, fdf->camera->alpha);
 	rotate_y(&p1, fdf->camera->beta);

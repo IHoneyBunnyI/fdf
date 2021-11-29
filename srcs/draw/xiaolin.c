@@ -57,13 +57,10 @@ void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1_in, t_point p2_in)
 	int y2;
 	t_map *map = fdf->map;
 
-	int square_size = 0;
-	if (map->width_map > map->height_map)
-		square_size = WIDTH / (map->width_map + 2);
-	else
-		square_size = HEIGHT / (map->height_map + 2);
-	int offset_x =  WIDTH / 2;
-	int offset_y = (HEIGHT - ((square_size / 2) * fdf->map->height_map)) / 2;
+	/*map->square_size = 0;*/
+
+	/*int offset_x =  map->square_size * map->height_map;*/
+	/*int offset_y = (HEIGHT - ((map->square_size / 2) * fdf->map->height_map)) / 2;*/
 
 	x1 = p1_in.x;
 	x2 = p2_in.x;
@@ -74,11 +71,11 @@ void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1_in, t_point p2_in)
 	t_point p2;
 	p1.color = p1_in.color;
 	p2.color = p2_in.color;
-	p1.x = (x1 - y1) * square_size + offset_x;
-	p1.y =  ((x1 + y1) - p1_in.z) * (square_size / 2) + offset_y;
+	p1.x = (x1 - y1) * map->square_size + map->offset_x;
+	p1.y =  ((x1 + y1) - p1_in.z) * (map->square_size / 2) + map->offset_y;
 
-	p2.x = (x2 - y2) * square_size + offset_x;
-	p2.y =  ((x2 + y2) - p2_in.z) * (square_size / 2) + offset_y;
+	p2.x = (x2 - y2) * map->square_size + map->offset_x;
+	p2.y =  ((x2 + y2) - p2_in.z) * (map->square_size / 2) + map->offset_y;
 
 
 	double dx = (double)p2.x - p1.x;

@@ -104,6 +104,10 @@ t_map parse_map(char *map_path)
 		map.map = 0;
 		return map;
 	}
+	if (map.width_map > map.height_map)
+		map.square_size = WIDTH / (map.width_map * 2);
+	else
+		map.square_size = HEIGHT / (map.height_map * 2);
 	return (map);
 }
 

@@ -35,23 +35,21 @@ t_point make_point(int x, int y, int color)
 void check_keys(t_fdf *fdf, t_keys *keys)
 {
 	if (keys->w)
-		fdf->pos_y -= 10;
+		fdf->map->square_size += 1;
 	if (keys->s)
-		fdf->pos_y += 10;
-	if (keys->a)
-		fdf->pos_x -= 10;
-	if (keys->d)
-		fdf->pos_x += 10;
+		if (fdf->map->square_size > 2)
+			fdf->map->square_size -= 1;
 
-	if (fdf->pos_y <= 0)
-		fdf->pos_y = HEIGHT;
-	if (fdf->pos_y >= HEIGHT + 4)
-		fdf->pos_y = 0;
-
-	if (fdf->pos_x <= 0)
-		fdf->pos_x = WIDTH;
-	if (fdf->pos_x >= WIDTH + 4)
-		fdf->pos_x = 0;
+	if (keys->left)
+		if (fdf->map->offset_x > 1)
+			fdf->map->offset_x -= 3;
+	if (keys->right)
+			fdf->map->offset_x += 3;
+	if (keys->up)
+		if (fdf->map->offset_x > 0)
+			fdf->map->offset_y -= 3;
+	if (keys->down)
+		fdf->map->offset_y += 3;
 }
 
 int draw(t_fdf *fdf, t_mlx *mlx)

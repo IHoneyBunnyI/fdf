@@ -31,6 +31,9 @@ typedef struct map
 	int height_map;
 	int max_z;
 	int min_z;
+	int square_size;
+	int offset_x;
+	int offset_y;
 }	t_map;
 
 typedef struct keys

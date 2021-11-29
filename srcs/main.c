@@ -37,7 +37,7 @@ int main(int ac, char **av)
 	t_fdf fdf;
 
 	if (ac == 1)
-		av[1] = ft_strdup("./maps/42.fdf");
+		av[1] = ft_strdup("./test.fdf");
 	init(&map, &mlx, &keys, &fdf);
 	/*if (ac != 2)*/
 		/*return (error("\033[1;41mError arguments\033[0m"));*/

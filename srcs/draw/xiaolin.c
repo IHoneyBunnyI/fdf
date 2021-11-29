@@ -49,12 +49,21 @@ void plot_(t_mlx *mlx, int x,int y, double d, int c)
 	_dla_plot(mlx, x, y, &f, d);
 }
 
-void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1_in, t_point p2_in)
+void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1_in, t_point p2_in)
 {
 	int x1;
 	int x2;
 	int y1;
 	int y2;
+	t_map *map = fdf->map;
+
+	int square_size = 0;
+	if (map->width_map > map->height_map)
+		square_size = WIDTH / (map->width_map + 2);
+	else
+		square_size = HEIGHT / (map->height_map + 2);
+	int offset_x =  WIDTH / 2;
+	int offset_y = (HEIGHT - ((square_size / 2) * fdf->map->height_map)) / 2;
 
 	x1 = p1_in.x;
 	x2 = p2_in.x;
@@ -65,13 +74,11 @@ void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1_in, t_point p2_in)
 	t_point p2;
 	p1.color = p1_in.color;
 	p2.color = p2_in.color;
-	p1.x = (x1 - y1) * 30 + WIDTH / 2;
-	p1.y =  ((x1 + y1) - p1_in.z) * 15  + HEIGHT / 3;
+	p1.x = (x1 - y1) * square_size + offset_x;
+	p1.y =  ((x1 + y1) - p1_in.z) * (square_size / 2) + offset_y;
 
-	p2.x = (x2 - y2) * 30 + WIDTH / 2;
-	p2.y =  ((x2 + y2) - p2_in.z) * 15  + HEIGHT / 3;
-
-
+	p2.x = (x2 - y2) * square_size + offset_x;
+	p2.y =  ((x2 + y2) - p2_in.z) * (square_size / 2) + offset_y;
 
 
 	double dx = (double)p2.x - p1.x;
@@ -97,9 +104,9 @@ void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1_in, t_point p2_in)
 		int xpxl1 = xend;
 		int ypxl1 = ipart_(yend);
 
-		plot_(mlx, xpxl1, ypxl1, rfpart_(yend)*xgap, get_color(cur, p1, p2, delta));
+		plot_(fdf->mlx, xpxl1, ypxl1, rfpart_(yend)*xgap, get_color(cur, p1, p2, delta));
 		cur.x += sx;
-		plot_(mlx, xpxl1, ypxl1+1, fpart_(yend)*xgap, get_color(cur, p1, p2, delta));
+		plot_(fdf->mlx, xpxl1, ypxl1+1, fpart_(yend)*xgap, get_color(cur, p1, p2, delta));
 		cur.y += sy;
 		double intery = yend + gradient;
 
@@ -108,13 +115,13 @@ void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1_in, t_point p2_in)
 		xgap = fpart_(p2.x+0.5);
 		int xpxl2 = xend;
 		int ypxl2 = ipart_(yend);
-		plot_(mlx, xpxl2, ypxl2, rfpart_(yend) * xgap, get_color(cur, p1, p2, delta));
-		plot_(mlx, xpxl2, ypxl2 + 1, fpart_(yend) * xgap, get_color(cur, p1, p2, delta));
+		plot_(fdf->mlx, xpxl2, ypxl2, rfpart_(yend) * xgap, get_color(cur, p1, p2, delta));
+		plot_(fdf->mlx, xpxl2, ypxl2 + 1, fpart_(yend) * xgap, get_color(cur, p1, p2, delta));
 
 		int x;
 		for(x=xpxl1+1; x < xpxl2; x++) {
-			plot_(mlx, x, ipart_(intery), rfpart_(intery), get_color(cur, p1, p2, delta));
-			plot_(mlx, x, ipart_(intery) + 1, fpart_(intery), get_color(cur, p1, p2, delta));
+			plot_(fdf->mlx, x, ipart_(intery), rfpart_(intery), get_color(cur, p1, p2, delta));
+			plot_(fdf->mlx, x, ipart_(intery) + 1, fpart_(intery), get_color(cur, p1, p2, delta));
 			intery += gradient;
 			cur.x += sx;
 		}
@@ -131,8 +138,8 @@ void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1_in, t_point p2_in)
 		double ygap = rfpart_(p1.y + 0.5);
 		int ypxl1 = yend;
 		int xpxl1 = ipart_(xend);
-		plot_(mlx, xpxl1, ypxl1, rfpart_(xend)*ygap, get_color(cur, p1, p2, delta));
-		plot_(mlx, xpxl1 + 1, ypxl1, fpart_(xend)*ygap, get_color(cur, p1, p2, delta));
+		plot_(fdf->mlx, xpxl1, ypxl1, rfpart_(xend)*ygap, get_color(cur, p1, p2, delta));
+		plot_(fdf->mlx, xpxl1 + 1, ypxl1, fpart_(xend)*ygap, get_color(cur, p1, p2, delta));
 		double interx = xend + gradient;
  
 		yend = round_(p2.y);
@@ -140,13 +147,13 @@ void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1_in, t_point p2_in)
 		ygap = fpart_(p2.y+0.5);
 		int ypxl2 = yend;
 		int xpxl2 = ipart_(xend);
-		plot_(mlx, xpxl2, ypxl2, rfpart_(xend) * ygap, get_color(cur, p1, p2, delta));
-		plot_(mlx, xpxl2 + 1, ypxl2, fpart_(xend) * ygap, get_color(cur, p1, p2, delta));
+		plot_(fdf->mlx, xpxl2, ypxl2, rfpart_(xend) * ygap, get_color(cur, p1, p2, delta));
+		plot_(fdf->mlx, xpxl2 + 1, ypxl2, fpart_(xend) * ygap, get_color(cur, p1, p2, delta));
  
 		int y;
 		for(y=ypxl1+1; y < ypxl2; y++) {
-			plot_(mlx, ipart_(interx), y, rfpart_(interx), get_color(cur, p1, p2, delta));
-			plot_(mlx, ipart_(interx) + 1, y, fpart_(interx), get_color(cur, p1, p2, delta));
+			plot_(fdf->mlx, ipart_(interx), y, rfpart_(interx), get_color(cur, p1, p2, delta));
+			plot_(fdf->mlx, ipart_(interx) + 1, y, fpart_(interx), get_color(cur, p1, p2, delta));
 			interx += gradient;
 			cur.y += sy;
 		}

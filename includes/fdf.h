@@ -5,7 +5,6 @@
 #define ERROR -1
 #define WIDTH 1280
 #define HEIGHT 720
-#define W_RECT 100
 
 typedef struct rgb_color
 {
@@ -30,6 +29,8 @@ typedef struct map
 	char **map;
 	int width_map;
 	int height_map;
+	int max_z;
+	int min_z;
 }	t_map;
 
 typedef struct keys
@@ -76,7 +77,8 @@ int draw(t_fdf *fdf, t_mlx *mlx);
 void	pixel_put(t_mlx *mlx, int x, int y, int color);
 int		make_color(int r, int g, int b);
 void draw_line_bresenham(t_mlx *mlx, t_point p0, t_point p1);
-void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2);
+//void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2);
+void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1_in, t_point p2_in);
 int	get_color(t_point current, t_point start, t_point end, t_point delta);
 //char** parse_map(char *map_path);
 t_map parse_map(char *map_path);

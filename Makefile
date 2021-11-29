@@ -21,6 +21,7 @@ FILES =	color.c\
 		xiaolin.c\
 		parse_points.c\
 		utils_parser.c\
+		check_keys.c\
 
 #VPATH спецмальная переменная, в которой лежит список каталогов в которых следует выполнять поиск
 VPATH = srcs/\

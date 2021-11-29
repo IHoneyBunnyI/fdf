@@ -25,11 +25,11 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf)
 	fdf->map = map;
 	fdf->mlx = mlx;
 	fdf->keys = keys;
-	fdf->pos_x = WIDTH / 2;
-	fdf->pos_y = HEIGHT / 2;
 	fdf->map->square_size = 0;
 	fdf->map->offset_x = 0;
 	fdf->map->offset_y = 0;
+	fdf->map->angle_x = 0;
+	fdf->map->angle_y = 0;
 }
 
 int main(int ac, char **av)

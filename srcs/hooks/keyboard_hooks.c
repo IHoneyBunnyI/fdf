@@ -27,6 +27,10 @@ int key_down_hook(int key, t_keys *keys)
 		keys->up = 1;
 	if (key == 125)
 		keys->down = 1;
+	if (key == 27)
+		keys->minus = 1;
+	if (key == 24)
+		keys->plus = 1;
 	return (0);
 }
 
@@ -50,5 +54,9 @@ int key_up_hook(int key, t_keys *keys)
 		keys->up = 0;
 	if (key == 125)
 		keys->down = 0;
+	if (key == 27)
+		keys->minus = 0;
+	if (key == 24)
+		keys->plus = 0;
 	return (0);
 }

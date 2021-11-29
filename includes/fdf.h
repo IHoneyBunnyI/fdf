@@ -34,6 +34,8 @@ typedef struct map
 	int square_size;
 	int offset_x;
 	int offset_y;
+	float angle_x;
+	float angle_y;
 }	t_map;
 
 typedef struct keys
@@ -47,6 +49,8 @@ typedef struct keys
 	int right;
 	int up;
 	int down;
+	int plus;
+	int minus;
 }	t_keys;
 
 typedef struct point
@@ -63,8 +67,6 @@ typedef struct fdf
 	t_map *map;
 	t_keys *keys;
 	t_point **points;
-	int pos_x;
-	int pos_y;
 }	t_fdf;
 
 char	**ft_split(char const *s, char c);
@@ -99,4 +101,5 @@ int		ft_atoi(const char *str);
 int	ft_toupper(int c);
 int	ft_check_hex(char n);
 int	ft_convert_color(char *s);
+void check_keys(t_fdf *fdf, t_keys *keys);
 #endif

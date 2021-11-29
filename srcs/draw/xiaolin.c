@@ -114,54 +114,56 @@ void iso(t_fdf *fdf, t_point *p1, t_point *p2)
 
 void parallel(t_fdf *fdf, t_point *p1, t_point *p2)
 {
-	/*fdf->camera->offset_x = 0;*/
-	/*fdf->camera->offset_y = 0;*/
-	/*fdf->camera->alpha = 0;*/
-	/*fdf->camera->beta = 0;*/
-	/*fdf->camera->gamma = 0;*/
+	fdf->camera->offset_x = 0;
+	fdf->camera->offset_y = 0;
+	fdf->camera->alpha = 0;
+	fdf->camera->beta = 0;
+	fdf->camera->gamma = 0;
 	p1->x += (fdf->map->width_map * fdf->map->square_size) / 2;
 	p2->x += (fdf->map->width_map * fdf->map->square_size) / 2;
 	p1->y += (fdf->map->height_map * fdf->map->square_size) / 2;
 	p2->y += (fdf->map->height_map * fdf->map->square_size) / 2;
-	p1->x += (WIDTH / 2) + fdf->camera->offset_x;
-	p2->x += (WIDTH / 2) + fdf->camera->offset_x;
-	p1->y += (fdf->map->height_map * fdf->map->square_size) / 2 + fdf->camera->offset_y;
-	p2->y += (fdf->map->height_map * fdf->map->square_size) / 2 + fdf->camera->offset_y;
+	/*p1->x += (WIDTH / 2) + fdf->camera->offset_x;*/
+	/*p2->x += (WIDTH / 2) + fdf->camera->offset_x;*/
+	/*p1->y += (fdf->map->height_map * fdf->map->square_size) / 2 + fdf->camera->offset_y;*/
+	/*p2->y += (fdf->map->height_map * fdf->map->square_size) / 2 + fdf->camera->offset_y;*/
 }
 
 #include <unistd.h>
 void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
 {
-	if (fdf->keys->is_isometric)
-		iso(fdf, &p1, &p2);
-	else if (fdf->keys->is_parralel)
-		parallel(fdf, &p1, &p2);
-	else
-	{
+	p1.x += (fdf->map->width_map * fdf->map->square_size) / 2;
+	p2.x += (fdf->map->width_map * fdf->map->square_size) / 2;
+	p1.y += (fdf->map->height_map * fdf->map->square_size) / 2;
+	p2.y += (fdf->map->height_map * fdf->map->square_size) / 2;
+
 	rotate_x(&p1, fdf->camera->alpha);
 	rotate_x(&p2, fdf->camera->alpha);
 	rotate_y(&p1, fdf->camera->beta);
 	rotate_y(&p2, fdf->camera->beta);
 	rotate_z(&p1, fdf->camera->gamma);
 	rotate_z(&p2, fdf->camera->gamma);
+
+	if (fdf->keys->is_isometric)
+		iso(fdf, &p1, &p2);
+	else if (fdf->keys->is_parralel)
+		parallel(fdf, &p1, &p2);
+	else
+	{
 	/*printf("%f %f %f\n", fdf->camera->alpha, fdf->camera->beta, fdf->camera->gamma);*/
 
-	p1.x += (fdf->map->width_map * fdf->map->square_size) / 2;
-	p2.x += (fdf->map->width_map * fdf->map->square_size) / 2;
-	p1.y += (fdf->map->height_map * fdf->map->square_size) / 2;
-	p2.y += (fdf->map->height_map * fdf->map->square_size) / 2;
 
-	int prev_1_x = p1.x;
-	int prev_2_x = p2.x;
-	int prev_1_y = p1.y;
-	int prev_2_y = p2.y;
+	/*int prev_1_x = p1.x;*/
+	/*int prev_2_x = p2.x;*/
+	/*int prev_1_y = p1.y;*/
+	/*int prev_2_y = p2.y;*/
 
-	//OK, RABOTAET
-	p1.x = (prev_1_x - prev_1_y) * cos(0.523599);
-	p2.x = (prev_2_x - prev_2_y) * cos(0.523599);
+	/*//OK, RABOTAET*/
+	/*p1.x = (prev_1_x - prev_1_y) * cos(0.523599);*/
+	/*p2.x = (prev_2_x - prev_2_y) * cos(0.523599);*/
 
-	p1.y = (prev_1_x + prev_1_y -p1.z) * sin(0.523599);
-	p2.y = (prev_2_x + prev_2_y -p2.z) * sin(0.523599);
+	/*p1.y = (prev_1_x + prev_1_y -p1.z) * sin(0.523599);*/
+	/*p2.y = (prev_2_x + prev_2_y -p2.z) * sin(0.523599);*/
 
 	p1.x += (WIDTH / 2) + fdf->camera->offset_x;
 	p2.x += (WIDTH / 2) + fdf->camera->offset_x;

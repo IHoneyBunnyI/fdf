@@ -38,25 +38,26 @@ typedef struct map
 
 typedef struct keys
 {
-	int esc;
-	int w;
-	int a;
-	int s;
-	int d;
-	int left;
-	int right;
-	int up;
-	int down;
-	int plus;
-	int minus;
-	int alpha_plus;
-	int alpha_minus;
-	int beta_plus;
-	int beta_minus;
-	int gamma_plus;
-	int gamma_minus;
-	int is_isometric;
-	int is_parralel;
+	char esc;
+	char w;
+	char a;
+	char s;
+	char d;
+	char left;
+	char right;
+	char up;
+	char down;
+	char plus;
+	char minus;
+	char alpha_plus;
+	char alpha_minus;
+	char beta_plus;
+	char beta_minus;
+	char gamma_plus;
+	char gamma_minus;
+	char is_isometric;
+	char is_parralel;
+	char rotate;
 }	t_keys;
 
 typedef struct point

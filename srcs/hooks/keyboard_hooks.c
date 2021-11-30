@@ -52,6 +52,8 @@ int key_down_hook(int key, t_keys *keys)
 		keys->is_isometric = 1;
 	if (key == 35)
 		keys->is_parralel = 1;
+	if (key == 15)
+		keys->rotate = 1;
 	return (0);
 }
 

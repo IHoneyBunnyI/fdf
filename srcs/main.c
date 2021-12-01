@@ -45,7 +45,7 @@ int main(int ac, char **av)
 	t_keys keys;
 	t_camera camera;
 	t_fdf fdf;
-	
+
 	if (ac == 1)
 		av[1] = ft_strdup("./test.fdf");
 	init(&map, &mlx, &keys, &fdf, &camera);

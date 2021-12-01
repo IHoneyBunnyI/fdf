@@ -80,65 +80,11 @@ void	rotate_z(t_point *p, double gamma)
 }
 
 
-void iso(t_fdf *fdf, t_point *p1, t_point *p2)
-{
-	int previous_1_x;
-	int previous_1_y;
-	int previous_2_x;
-	int previous_2_y;
-
-	(void)fdf;
-	fdf->camera->offset_x = 0;
-	fdf->camera->offset_y = 0;
-	fdf->camera->alpha = 0;
-	fdf->camera->beta = 0;
-	fdf->camera->gamma = 0;
-	p1->x += (fdf->map->width_map * fdf->map->square_size) / 2;
-	p2->x += (fdf->map->width_map * fdf->map->square_size) / 2;
-	p1->y += (fdf->map->height_map * fdf->map->square_size) / 2;
-	p2->y += (fdf->map->height_map * fdf->map->square_size) / 2;
-
-	previous_1_x = p1->x;
-	previous_1_y = p1->y;
-	previous_2_x = p2->x;
-	previous_2_y = p2->y;
-	p1->x = (previous_1_x - previous_1_y) * cos(0.523599);
-	p1->y = (previous_1_x + previous_1_y - p1->z) * sin(0.523599);
-	p2->x = (previous_2_x - previous_2_y) * cos(0.523599);
-	p2->y = (previous_2_x + previous_2_y - p2->z) * sin(0.523599);
-	p1->x += (WIDTH / 2);
-	p2->x += (WIDTH / 2);
-	p1->y += (fdf->map->height_map * fdf->map->square_size) / 2;
-	p2->y += (fdf->map->height_map * fdf->map->square_size) / 2;
-}
-
-void parallel(t_fdf *fdf, t_point *p1, t_point *p2)
-{
-	fdf->camera->offset_x = 0;
-	fdf->camera->offset_y = 0;
-	fdf->camera->alpha = 0;
-	fdf->camera->beta = 0;
-	fdf->camera->gamma = 0;
-	p1->x += (fdf->map->width_map * fdf->map->square_size) / 2;
-	p2->x += (fdf->map->width_map * fdf->map->square_size) / 2;
-	p1->y += (fdf->map->height_map * fdf->map->square_size) / 2;
-	p2->y += (fdf->map->height_map * fdf->map->square_size) / 2;
-	/*p1->x += (WIDTH / 2) + fdf->camera->offset_x;*/
-	/*p2->x += (WIDTH / 2) + fdf->camera->offset_x;*/
-	/*p1->y += (fdf->map->height_map * fdf->map->square_size) / 2 + fdf->camera->offset_y;*/
-	/*p2->y += (fdf->map->height_map * fdf->map->square_size) / 2 + fdf->camera->offset_y;*/
-}
 
 #include <unistd.h>
 void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
 {
-	if (fdf->keys->is_isometric)
-		iso(fdf, &p1, &p2);
-	else if (fdf->keys->is_parralel)
-		parallel(fdf, &p1, &p2);
-	else
-	{
-		p1.x *= fdf->map->square_size;
+		/*p1.x *= fdf->map->square_size;
 		p2.x *= fdf->map->square_size;
 		p1.y *= fdf->map->square_size;
 		p2.y *= fdf->map->square_size;
@@ -156,17 +102,12 @@ void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
 		rotate_y(&p2, fdf->camera->beta);
 		rotate_z(&p1, fdf->camera->gamma);
 		rotate_z(&p2, fdf->camera->gamma);
-		/*printf("%d\n", fdf->map->square_size);*/
-
-		/*points[y][x].x -= (map->width_map * map->square_size) / 2;*/
-		/*points[y][x].y -= (map->height_map * map->square_size) / 2;*/
 
 		int prev_1_x = p1.x;
 		int prev_2_x = p2.x;
 		int prev_1_y = p1.y;
 		int prev_2_y = p2.y;
 
-		/*//OK, RABOTAET*/
 		p1.x = (prev_1_x - prev_1_y) * cos(0.523599);
 		p2.x = (prev_2_x - prev_2_y) * cos(0.523599);
 		p1.y = (prev_1_x + prev_1_y -p1.z) * sin(0.523599);
@@ -174,11 +115,9 @@ void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
 
 		p1.x += (WIDTH / 2) + fdf->camera->offset_x;
 		p2.x += (WIDTH / 2) + fdf->camera->offset_x;
-		p1.y += (fdf->map->height_map * fdf->map->square_size) / 2 + fdf->camera->offset_y;
-		p2.y += (fdf->map->height_map * fdf->map->square_size) / 2 + fdf->camera->offset_y;
-	}
-
-
+		p1.y += (fdf->map->height_map * fdf->map->square_size) + fdf->camera->offset_y;
+		p2.y += (fdf->map->height_map * fdf->map->square_size) + fdf->camera->offset_y;
+*/
 
 	//DRAW
 	double dx = (double)p2.x - p1.x;

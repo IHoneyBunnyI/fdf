@@ -43,20 +43,29 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	fill_image(mlx);
 	check_keys(fdf, keys);
 
+	/*for (int i = 0; i < map->height_map - 1; ++i)*/
+	/*{*/
+		/*for (int j = 0; j < map->width_map - 1; ++j)*/
+		/*{*/
+			/*if (i == map->height_map - 2)*/
+				/*draw_line_bresenham(fdf, set_point(fdf, points[i + 1][j]), set_point(fdf, points[i + 1][j + 1]));*/
+			/*if (j == map->width_map - 2)*/
+				/*draw_line_bresenham(fdf, set_point(fdf, points[i][j + 1]), set_point(fdf, points[i + 1][j + 1]));*/
+			/*draw_line_bresenham(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i][j + 1]));*/
+			/*draw_line_bresenham(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i + 1][j]));*/
+		/*}*/
+	/*}*/
+
 	for (int i = 0; i < map->height_map - 1; ++i)
 	{
 		for (int j = 0; j < map->width_map - 1; ++j)
 		{
 			if (i == map->height_map - 2)
-				draw_line_xiaolin_wu(fdf, points[i + 1][j], points[i + 1][j + 1]);
-				/*draw_line_bresenham(fdf, points[i + 1][j], points[i + 1][j + 1]);*/
+				draw_line_xiaolin_wu(fdf, set_point(fdf, points[i + 1][j]), set_point(fdf, points[i + 1][j + 1]));
 			if (j == map->width_map - 2)
-				draw_line_xiaolin_wu(fdf, points[i][j + 1], points[i + 1][j + 1]);
-				/*draw_line_bresenham(fdf, points[i][j + 1], points[i + 1][j + 1]);*/
-			draw_line_xiaolin_wu(fdf, points[i][j], points[i][j + 1]);
-			/*draw_line_bresenham(fdf, points[i][j], points[i][j + 1]);*/
-			draw_line_xiaolin_wu(fdf, points[i][j], points[i + 1][j]);
-			/*draw_line_bresenham(fdf, points[i][j], points[i + 1][j]);*/
+				draw_line_xiaolin_wu(fdf, set_point(fdf, points[i][j + 1]), set_point(fdf, points[i + 1][j + 1]));
+			draw_line_xiaolin_wu(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i][j + 1]));
+			draw_line_xiaolin_wu(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i + 1][j]));
 		}
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);

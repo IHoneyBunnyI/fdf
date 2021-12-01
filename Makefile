@@ -22,6 +22,8 @@ FILES =	color.c\
 		parse_points.c\
 		utils_parser.c\
 		check_keys.c\
+		iso_paralell.c\
+		set_point.c\
 
 #VPATH спецмальная переменная, в которой лежит список каталогов в которых следует выполнять поиск
 VPATH = srcs/\

@@ -29,9 +29,13 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera)
 	fdf->map->square_size = 0;
 	fdf->camera->offset_x = 0;
 	fdf->camera->offset_y = 0;
-	fdf->camera->alpha = 0;
-	fdf->camera->beta = 0;
-	fdf->camera->gamma = 0;
+	fdf->camera->alpha =-0.785398;
+	fdf->camera->beta = -0.628318;
+	fdf->camera->gamma = 0.523598;
+	/*fdf->camera->beta = 0.;*/
+	/*fdf->camera->gamma = 0;*/
+
+	//a=-0.750000 b=-0.650000 g=0.500000
 }
 
 int main(int ac, char **av)
@@ -41,7 +45,7 @@ int main(int ac, char **av)
 	t_keys keys;
 	t_camera camera;
 	t_fdf fdf;
-
+	
 	if (ac == 1)
 		av[1] = ft_strdup("./test.fdf");
 	init(&map, &mlx, &keys, &fdf, &camera);

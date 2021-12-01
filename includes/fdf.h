@@ -127,4 +127,5 @@ void	rotate_y(t_point *p, double beta);
 void	rotate_x(t_point *p, double alpha);
 void iso(t_fdf *fdf, t_point *p1, t_point *p2);
 void parallel(t_fdf *fdf, t_point *p1, t_point *p2);
+t_point set_point(t_fdf *fdf, t_point p);
 #endif

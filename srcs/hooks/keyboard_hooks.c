@@ -103,9 +103,5 @@ int key_up_hook(int key, t_keys *keys)
 		keys->is_isometric = 0;
 	if (key == 35)
 		keys->is_parralel = 0;
-	/*if (keys->rotate && key == 15)*/
-		/*keys->rotate = 1;*/
-	/*if (keys->rotate && key == 15)*/
-		/*keys->rotate = 1;*/
 	return (0);
 }

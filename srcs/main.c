@@ -29,9 +29,9 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera)
 	fdf->map->square_size = 0;
 	fdf->camera->offset_x = 0;
 	fdf->camera->offset_y = 0;
-	fdf->camera->alpha =-0.785398;
-	fdf->camera->beta = -0.628318;
-	fdf->camera->gamma = 0.523598;
+	fdf->camera->alpha =-0.785398; //PI /4
+	fdf->camera->beta = -0.628318; //PI/ 5
+	fdf->camera->gamma = 0.523598; // PI/6
 	/*fdf->camera->beta = 0.;*/
 	/*fdf->camera->gamma = 0;*/
 

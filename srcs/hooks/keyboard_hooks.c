@@ -52,8 +52,10 @@ int key_down_hook(int key, t_keys *keys)
 		keys->is_isometric = 1;
 	if (key == 35)
 		keys->is_parralel = 1;
-	if (key == 15)
+	if (keys->rotate == 0 && key == 15) //запуск
 		keys->rotate = 1;
+	else if (keys->rotate == 1 && key == 15) //стоп
+		keys->rotate = 0;
 	return (0);
 }
 
@@ -101,5 +103,9 @@ int key_up_hook(int key, t_keys *keys)
 		keys->is_isometric = 0;
 	if (key == 35)
 		keys->is_parralel = 0;
+	/*if (keys->rotate && key == 15)*/
+		/*keys->rotate = 1;*/
+	/*if (keys->rotate && key == 15)*/
+		/*keys->rotate = 1;*/
 	return (0);
 }

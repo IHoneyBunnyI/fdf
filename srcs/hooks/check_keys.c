@@ -29,9 +29,9 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 		fdf->camera->gamma -= 0.05;
 	if (keys->rotate)
 	{
-		fdf->camera->alpha += 0.05;
-		fdf->camera->beta += 0.05;
-		fdf->camera->gamma -= 0.05;
+		fdf->camera->alpha += 0.04;
+		fdf->camera->beta += 0.04;
+		fdf->camera->gamma += 0.04;
 	}
 }
 

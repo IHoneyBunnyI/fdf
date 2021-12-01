@@ -98,7 +98,8 @@ int key_up_hook(int key, t_keys *keys);
 int draw(t_fdf *fdf, t_mlx *mlx);
 void	pixel_put(t_mlx *mlx, int x, int y, int color);
 int		make_color(int r, int g, int b);
-void draw_line_bresenham(t_mlx *mlx, t_point p0, t_point p1);
+//void draw_line_bresenham(t_mlx *mlx, t_point p0, t_point p1);
+void draw_line_bresenham(t_fdf *fdf, t_point p0, t_point p1);
 //void draw_line_xiaolin_wu(t_mlx *mlx, t_point p1, t_point p2);
 void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1_in, t_point p2_in);
 int	get_color(t_point current, t_point start, t_point end, t_point delta);
@@ -119,4 +120,11 @@ int	ft_toupper(int c);
 int	ft_check_hex(char n);
 int	ft_convert_color(char *s);
 void check_keys(t_fdf *fdf, t_keys *keys);
+
+
+void	rotate_z(t_point *p, double gamma);
+void	rotate_y(t_point *p, double beta);
+void	rotate_x(t_point *p, double alpha);
+void iso(t_fdf *fdf, t_point *p1, t_point *p2);
+void parallel(t_fdf *fdf, t_point *p1, t_point *p2);
 #endif

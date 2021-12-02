@@ -56,6 +56,8 @@ int key_down_hook(int key, t_keys *keys)
 		keys->rotate = 1;
 	else if (keys->rotate == 1 && key == 15) //стоп
 		keys->rotate = 0;
+	if (keys->invert_color == 0 && key == 8)
+		keys->invert_color = 1;
 	return (0);
 }
 

@@ -58,6 +58,7 @@ typedef struct keys
 	char is_isometric;
 	char is_parralel;
 	char rotate;
+	char invert_color;
 }	t_keys;
 
 typedef struct point

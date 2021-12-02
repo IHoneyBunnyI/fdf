@@ -39,5 +39,19 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 		fdf->camera->beta += 0.04;
 		fdf->camera->gamma += 0.04;
 	}
+	if (keys->invert_color)
+	{
+		t_point **points;
+		points = fdf->points;
+		for (int i = 0; i < fdf->map->height_map; i++)
+		{
+			for (int j = 0; j < fdf->map->width_map; j++)
+			{
+				if (points[i][j].color != 0xFFFFFF)
+					points[i][j].color = 0xFFFFFF - points[i][j].color;
+			}
+		}
+		keys->invert_color = 0;
+	}
 }
 

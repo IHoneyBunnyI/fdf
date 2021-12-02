@@ -10,6 +10,7 @@ int lenth_file(char *map_path)
 	char *line;
 	int len_file;
 	int fd_map;
+	int r;
 
 	len_file = 0;
 	line = 0;
@@ -17,8 +18,10 @@ int lenth_file(char *map_path)
 	fd_map = open(map_path, O_RDONLY);
 	if (fd_map == -1)
 		return (ERROR);
-	while (get_next_line(fd_map, &line))
+	while ((r = get_next_line(fd_map, &line)))
 	{
+		if (r == -1)
+			return ERROR;
 		len_file++;
 		free(line);
 	}
@@ -31,10 +34,11 @@ void fill_map(char **map, int fd_map)
 {
 	char *line;
 	int i;
+	int r;
 
 	i = 0;
 	line = 0;
-	while (get_next_line(fd_map, &line))
+	while ((r = get_next_line(fd_map, &line)))
 	{
 		map[i++] = ft_strdup(line);
 		free(line);
@@ -83,15 +87,34 @@ int check_map(t_map *map, int len_file)
 	return 0;
 }
 
+int check_file(char *path)
+{
+	int i;
+
+	i = 0;
+	while (path[i])
+		i++;
+	if (path[i - 1] != 'f' || path[i -2] != 'd' || path[i - 3] != 'f' || path[i - 4] != '.')
+		return ERROR;
+	return 0;
+}
+
 t_map parse_map(char *map_path)
 {
 	t_map map;
 	int fd_map;
 	char *line;
+	int ok;
 
 	line = 0;
+	ok = check_file(map_path);
+	if (ok == ERROR)
+	{
+		map.map = 0;
+		return map;
+	}
 	map.height_map = lenth_file(map_path);
-	if (map.height_map == ERROR)
+	if (map.height_map == ERROR || map.height_map == 0)
 	{
 		map.map = 0;
 		return map;

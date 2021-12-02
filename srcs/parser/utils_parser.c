@@ -26,7 +26,7 @@ int	ft_check_hex(char n)
 	i = 0;
 	while (base[i])
 	{
-		if (n == ft_toupper(base[i]))
+		if (ft_toupper(n) == base[i])
 			return (i);
 		i++;
 	}

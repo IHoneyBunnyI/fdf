@@ -43,31 +43,24 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	fill_image(mlx);
 	check_keys(fdf, keys);
 
-	/*for (int i = 0; i < map->height_map - 1; ++i)*/
-	/*{*/
-		/*for (int j = 0; j < map->width_map - 1; ++j)*/
-		/*{*/
-			/*if (i == map->height_map - 2)*/
-				/*draw_line_bresenham(fdf, set_point(fdf, points[i + 1][j]), set_point(fdf, points[i + 1][j + 1]));*/
-			/*if (j == map->width_map - 2)*/
-				/*draw_line_bresenham(fdf, set_point(fdf, points[i][j + 1]), set_point(fdf, points[i + 1][j + 1]));*/
-			/*draw_line_bresenham(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i][j + 1]));*/
-			/*draw_line_bresenham(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i + 1][j]));*/
-		/*}*/
-	/*}*/
-
-	for (int i = 0; i < map->height_map - 1; ++i)
+	/*printf("n= %d\n", map->height_map * map->width_map);*/
+	int step = 4; //тут должна быть функция подсчета шага
+	for (int i = 0; i < map->height_map - step; i += step)
 	{
-		for (int j = 0; j < map->width_map - 1; ++j)
+		for (int j = 0; j < map->width_map - step; j += step)
 		{
-			if (i == map->height_map - 2)
-				draw_line_xiaolin_wu(fdf, set_point(fdf, points[i + 1][j]), set_point(fdf, points[i + 1][j + 1]));
-			if (j == map->width_map - 2)
-				draw_line_xiaolin_wu(fdf, set_point(fdf, points[i][j + 1]), set_point(fdf, points[i + 1][j + 1]));
-			draw_line_xiaolin_wu(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i][j + 1]));
-			draw_line_xiaolin_wu(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i + 1][j]));
+			if (i == map->height_map - (step + 1))
+				draw_line_xiaolin_wu(fdf, set_point(fdf, points[i + step][j]), set_point(fdf, points[i + step][j + step]));
+			if (j == map->width_map - (step + 1))
+				draw_line_xiaolin_wu(fdf, set_point(fdf, points[i][j + step]), set_point(fdf, points[i + step][j + step]));
+			draw_line_xiaolin_wu(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i][j + step]));
+			draw_line_xiaolin_wu(fdf, set_point(fdf, points[i][j]), set_point(fdf, points[i + step][j]));
 		}
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	return 1;
+	//julia 250 000 step 3-4
+	//mars 23 000 1-2
+	//t1 40 000 1-2
+	//t2 10 000 1
 }

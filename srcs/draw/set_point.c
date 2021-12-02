@@ -6,9 +6,6 @@ t_point set_point(t_fdf *fdf, t_point p)
 
 	if (fdf->keys->is_isometric)
 	{
-		/*fdf->camera->alpha = -0.785398;*/
-		/*fdf->camera->beta =  -0.628318;*/
-		/*fdf->camera->gamma =  0.523598;*/
 		fdf->camera->offset_x = 0;
 		fdf->camera->offset_y = 0;
 		fdf->camera->alpha = 0.;
@@ -30,8 +27,6 @@ t_point set_point(t_fdf *fdf, t_point p)
 	p.x -= (fdf->map->width_map * fdf->map->square_size) / 2;
 	p.y -= (fdf->map->height_map * fdf->map->square_size) / 2;
 
-	/*printf("a=%f b=%f g=%f\n", fdf->camera->alpha, fdf->camera->beta, fdf->camera->gamma);*/
-
 	rotate_x(&p, fdf->camera->alpha);
 	rotate_y(&p, fdf->camera->beta);
 	rotate_z(&p, fdf->camera->gamma);
@@ -49,6 +44,6 @@ t_point set_point(t_fdf *fdf, t_point p)
 	fdf->camera->beta = prev_b;
 	fdf->camera->gamma = prev_g;
 	p.x += (WIDTH / 2) + fdf->camera->offset_x;
-	p.y += (fdf->map->height_map * fdf->map->square_size) + fdf->camera->offset_y;
+	p.y += (HEIGHT + fdf->map->height_map * fdf->map->square_size) / 2 + fdf->camera->offset_y;
 	return (p);
 }

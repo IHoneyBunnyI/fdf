@@ -8,7 +8,7 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 		fdf->camera->offset_y -= 10;
 	}
 	if (keys->minus)
-		if (fdf->map->square_size > 2)
+		if (fdf->map->square_size >= 2)
 		{
 			fdf->map->square_size -= 1;
 			fdf->camera->offset_y += 10;

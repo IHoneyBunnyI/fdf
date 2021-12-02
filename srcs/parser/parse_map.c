@@ -99,6 +99,13 @@ int check_file(char *path)
 	return 0;
 }
 
+int ft_min(int a, int b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
+
 t_map parse_map(char *map_path)
 {
 	t_map map;
@@ -127,13 +134,7 @@ t_map parse_map(char *map_path)
 		map.map = 0;
 		return map;
 	}
-	/*if (map.width_map > map.height_map)*/
-	if (map.width_map * 2 < WIDTH)
-		map.square_size = WIDTH / (map.width_map * 2);
-	else
-		map.square_size = 1;
-	/*else*/
-		/*map.square_size = HEIGHT / (map.height_map * 2);*/
+	map.square_size = ft_min(WIDTH / map.width_map / 2, HEIGHT / map.height_map / 2);
 	return (map);
 }
 

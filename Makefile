@@ -52,6 +52,18 @@ $(OBJDIR):
 	@mkdir objs/
 $(NAME) : $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(MLXFLAGS) $(OBJS) -Lmlx -lmlx
+	@osascript -e 'display dialog "\t\t\t\t\t\tFDF\n\
+		Basic instructions\n\n\
+		Move:\t\t (\"w a s d\" or arrows)\n\
+		Rotate:\t\t (NUM_PAD or \"h j k l\")\n\
+		Zoom:\t\t (+ or -)\n\n\
+		Additional instructions\n\n\
+		Invert color:\t\t (C)\n\
+		Ranom color:\t\t (shift + C)\n\
+		Raindbow color:\t (ctrl + C)\n\
+		Infinity rotate:\t (R)\n\
+		Change height:\t (shift and +/-)\n\n\
+		"'
 
 $(MLX):
 	$(MAKE) -C $(MLX_D) 2>/dev/null

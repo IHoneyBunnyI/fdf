@@ -72,6 +72,7 @@ typedef struct point
 	int y;
 	int z;
 	int color;
+	int first_color;
 }	t_point;
 
 typedef struct s_camera
@@ -135,4 +136,7 @@ void	rotate_x(t_point *p, double alpha);
 void iso(t_fdf *fdf, t_point *p1, t_point *p2);
 void parallel(t_fdf *fdf, t_point *p1, t_point *p2);
 t_point set_point(t_fdf *fdf, t_point p);
+void	rotate_x(t_point *p, double alpha);
+void	rotate_y(t_point *p, double beta);
+void	rotate_z(t_point *p, double gamma);
 #endif

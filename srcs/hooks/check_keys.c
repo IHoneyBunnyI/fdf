@@ -1,4 +1,6 @@
 #include "fdf.h"
+#include <stdlib.h>
+#include <time.h>
 
 void check_keys(t_fdf *fdf, t_keys *keys)
 {
@@ -39,7 +41,7 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 		fdf->camera->beta += 0.04;
 		fdf->camera->gamma += 0.04;
 	}
-	if (keys->invert_color)
+	if (!keys->shift && keys->invert_color)
 	{
 		t_point **points;
 		points = fdf->points;
@@ -53,6 +55,21 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 		}
 		keys->invert_color = 0;
 	}
+	if (keys->shift && keys->invert_color)
+	{
+		srand(time(0));
+		t_point **points;
+		points = fdf->points;
+		for (int i = 0; i < fdf->map->height_map; i++)
+		{
+			for (int j = 0; j < fdf->map->width_map; j++)
+			{
+				if (points[i][j].color != 0xFFFFFF)
+					points[i][j].color = rand() % 0xFFFFFF;
+			}
+		}
+		keys->invert_color = 0;
+	}
 	if (keys->shift && keys->plus)
 	{
 		if (fdf->camera->z_coefficient < 10)
@@ -62,6 +79,17 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 	{
 		if (fdf->camera->z_coefficient > 0)
 			fdf->camera->z_coefficient -= 0.05;
+	}
+	if (keys->is_isometric)
+	{
+		for (int i = 0; i < fdf->map->height_map; i++)
+		{
+			for (int j = 0; j < fdf->map->width_map; j++)
+			{
+				if (fdf->points[i][j].color != 0xFFFFFF)
+					fdf->points[i][j].color = fdf->points[i][j].first_color;
+			}
+		}
 	}
 }
 

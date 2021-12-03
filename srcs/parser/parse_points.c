@@ -49,9 +49,15 @@ t_point **parse_points(t_map *map)
 		while (split[++x])
 		{
 			if (find_color(split[x]))
+			{
 				points[y][x].color = get_color_from_map(split[x]);
+				points[y][x].first_color = get_color_from_map(split[x]);
+			}
 			else
+			{
 				points[y][x].color = make_color(255, 255, 255);
+				points[y][x].first_color = make_color(255, 255, 255);
+			}
 			points[y][x].x = x;
 			points[y][x].y = y;
 			points[y][x].z = ft_atoi(split[x]);

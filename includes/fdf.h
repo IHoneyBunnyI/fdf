@@ -79,9 +79,9 @@ typedef struct s_camera
 	float alpha;
 	float beta;
 	float gamma;
+	float z_coefficient;
 	int offset_x;
 	int offset_y;
-	float z_coefficient;
 } t_camera;
 
 typedef struct fdf

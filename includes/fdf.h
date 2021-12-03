@@ -3,8 +3,10 @@
 #include <stdio.h> //for size_t
 
 #define ERROR -1
-#define WIDTH 1280
-#define HEIGHT 720
+//#define WIDTH 1280
+//#define HEIGHT 720
+#define WIDTH 2560
+#define HEIGHT 1440
 
 typedef struct rgb_color
 {
@@ -59,6 +61,7 @@ typedef struct keys
 	char is_parralel;
 	char rotate;
 	char invert_color;
+	char shift;
 }	t_keys;
 
 typedef struct point
@@ -76,6 +79,7 @@ typedef struct s_camera
 	float gamma;
 	int offset_x;
 	int offset_y;
+	float z_coefficient;
 } t_camera;
 
 typedef struct fdf

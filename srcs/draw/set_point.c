@@ -23,7 +23,7 @@ t_point set_point(t_fdf *fdf, t_point p)
 	}
 	p.x *= fdf->map->square_size;
 	p.y *= fdf->map->square_size;
-	p.z *= fdf->map->square_size;
+	p.z *= fdf->map->square_size * fdf->camera->z_coefficient;
 	p.x -= (fdf->map->width_map * fdf->map->square_size) / 2;
 	p.y -= (fdf->map->height_map * fdf->map->square_size) / 2;
 

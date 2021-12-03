@@ -44,7 +44,7 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	check_keys(fdf, keys);
 
 	/*printf("n= %d\n", map->height_map * map->width_map);*/
-	int step = 4; //тут должна быть функция подсчета шага
+	int step = 1; //тут должна быть функция подсчета шага
 	for (int i = 0; i < map->height_map - step; i += step)
 	{
 		for (int j = 0; j < map->width_map - step; j += step)

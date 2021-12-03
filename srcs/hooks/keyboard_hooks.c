@@ -9,7 +9,7 @@ int cross_hook(t_map *map)
 
 int key_down_hook(int key, t_keys *keys)
 {
-	/*printf("%d\n", key);*/
+	printf("%d\n", key);
 	if (key == 53)
 		exit(0);
 	if (key == 13)
@@ -58,6 +58,8 @@ int key_down_hook(int key, t_keys *keys)
 		keys->rotate = 0;
 	if (keys->invert_color == 0 && key == 8)
 		keys->invert_color = 1;
+	if (key == 257)
+		keys->shift = 1;
 	return (0);
 }
 
@@ -105,5 +107,7 @@ int key_up_hook(int key, t_keys *keys)
 		keys->is_isometric = 0;
 	if (key == 35)
 		keys->is_parralel = 0;
+	if (key == 257)
+		keys->shift = 0;
 	return (0);
 }

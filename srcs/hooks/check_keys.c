@@ -2,12 +2,12 @@
 
 void check_keys(t_fdf *fdf, t_keys *keys)
 {
-	if (keys->plus)
+	if (!keys->shift && keys->plus)
 	{
 		fdf->map->square_size += 1;
 		fdf->camera->offset_y -= 10;
 	}
-	if (keys->minus)
+	if (!keys->shift && keys->minus)
 		if (fdf->map->square_size >= 2)
 		{
 			fdf->map->square_size -= 1;
@@ -52,6 +52,16 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 			}
 		}
 		keys->invert_color = 0;
+	}
+	if (keys->shift && keys->plus)
+	{
+		if (fdf->camera->z_coefficient < 10)
+			fdf->camera->z_coefficient += 0.04;
+	}
+	if (keys->shift && keys->minus)
+	{
+		if (fdf->camera->z_coefficient > 0)
+			fdf->camera->z_coefficient -= 0.04;
 	}
 }
 

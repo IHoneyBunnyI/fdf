@@ -35,6 +35,7 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera)
 	fdf->camera->alpha = 0.;
 	fdf->camera->beta = 0.;
 	fdf->camera->gamma = 0;
+	fdf->camera->z_coefficient = 1;
 
 	//a=-0.750000 b=-0.650000 g=0.500000
 }

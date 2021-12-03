@@ -21,17 +21,17 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 			fdf->camera->offset_y -= 3;
 	if (keys->s || keys->down)
 			fdf->camera->offset_y += 3;
-	if (keys->alpha_plus)
+	if (keys->alpha_plus || (!fdf->keys->shift && fdf->keys->j))
 		fdf->camera->alpha += 0.05;
-	if (keys->alpha_minus)
+	if (keys->alpha_minus || (!fdf->keys->shift && fdf->keys->k))
 		fdf->camera->alpha -= 0.05;
-	if (keys->beta_plus)
+	if (keys->beta_plus || (!fdf->keys->shift && fdf->keys->l))
 		fdf->camera->beta += 0.05;
-	if (keys->beta_minus)
+	if (keys->beta_minus || (!fdf->keys->shift && fdf->keys->h))
 		fdf->camera->beta -= 0.05;
-	if (keys->gamma_plus)
+	if (keys->gamma_plus || (fdf->keys->shift && fdf->keys->l))
 		fdf->camera->gamma += 0.05;
-	if (keys->gamma_minus)
+	if (keys->gamma_minus || (fdf->keys->shift && fdf->keys->h))
 		fdf->camera->gamma -= 0.05;
 	if (keys->rotate)
 	{

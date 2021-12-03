@@ -34,8 +34,6 @@ typedef struct map
 	int max_z;
 	int min_z;
 	int square_size;
-	float angle_x;
-	float angle_y;
 }	t_map;
 
 typedef struct keys
@@ -62,6 +60,10 @@ typedef struct keys
 	char rotate;
 	char invert_color;
 	char shift;
+	char h;
+	char j;
+	char k;
+	char l;
 }	t_keys;
 
 typedef struct point

@@ -70,8 +70,4 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	return 1;
-	//julia 250 000 step 3-4
-	//mars 23 000 1-2
-	//t1 40 000 1-2
-	//t2 10 000 1
 }

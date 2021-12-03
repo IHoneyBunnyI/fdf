@@ -11,6 +11,7 @@ t_point set_point(t_fdf *fdf, t_point p)
 		fdf->camera->alpha = 0.;
 		fdf->camera->beta = 0.;
 		fdf->camera->gamma = 0;
+		fdf->camera->z_coefficient = 1;
 	}
 	float prev_a = fdf->camera->alpha;
 	float prev_b = fdf->camera->beta;

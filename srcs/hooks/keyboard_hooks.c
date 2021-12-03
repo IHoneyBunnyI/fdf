@@ -9,7 +9,7 @@ int cross_hook(t_map *map)
 
 int key_down_hook(int key, t_keys *keys)
 {
-	/*printf("%d\n", key);*/
+	printf("%d\n", key);
 	if (key == 53)
 		exit(0);
 	if (key == 13)
@@ -40,13 +40,9 @@ int key_down_hook(int key, t_keys *keys)
 		keys->beta_minus = 1;
 	if (key == 88)
 		keys->beta_plus= 1;
-	if (key == 89)
+	if (key == 89 || key == 83)
 		keys->gamma_minus = 1;
-	if (key == 92)
-		keys->gamma_plus= 1;
-	if (key == 83)
-		keys->gamma_minus = 1;
-	if (key == 85)
+	if (key == 92 || key == 85)
 		keys->gamma_plus= 1;
 	if (key == 34)
 		keys->is_isometric = 1;
@@ -60,6 +56,14 @@ int key_down_hook(int key, t_keys *keys)
 		keys->invert_color = 1;
 	if (key == 257)
 		keys->shift = 1;
+	if (key == 4)
+		keys->h = 1;
+	if (key == 37)
+		keys->l = 1;
+	if (key == 38)
+		keys->j = 1;
+	if (key == 40)
+		keys->k = 1;
 	return (0);
 }
 
@@ -87,21 +91,17 @@ int key_up_hook(int key, t_keys *keys)
 		keys->minus = 0;
 	if (key == 24)
 		keys->plus = 0;
-	if (key == 91)
+	if (key == 91 || key == 40)
 		keys->alpha_minus= 0;
-	if (key == 84)
+	if (key == 84 || key == 38)
 		keys->alpha_plus = 0;
-	if (key == 86)
+	if (key == 86 || key == 4)
 		keys->beta_minus = 0;
-	if (key == 88)
+	if (key == 88 || key == 37)
 		keys->beta_plus= 0;
-	if (key == 89)
+	if (key == 89 || key == 83)
 		keys->gamma_minus = 0;
-	if (key == 92)
-		keys->gamma_plus= 0;
-	if (key == 83)
-		keys->gamma_minus = 0;
-	if (key == 85)
+	if (key == 92 || key == 85)
 		keys->gamma_plus= 0;
 	if (key == 34)
 		keys->is_isometric = 0;
@@ -109,5 +109,13 @@ int key_up_hook(int key, t_keys *keys)
 		keys->is_parralel = 0;
 	if (key == 257)
 		keys->shift = 0;
+	if (key == 4)
+		keys->h = 0;
+	if (key == 37)
+		keys->l = 0;
+	if (key == 38)
+		keys->j = 0;
+	if (key == 40)
+		keys->k = 0;
 	return (0);
 }

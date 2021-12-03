@@ -64,6 +64,8 @@ int key_down_hook(int key, t_keys *keys)
 		keys->j = 1;
 	if (key == 40)
 		keys->k = 1;
+	if (key == 256)
+		keys->ctrl = 1;
 	return (0);
 }
 
@@ -117,5 +119,7 @@ int key_up_hook(int key, t_keys *keys)
 		keys->j = 0;
 	if (key == 40)
 		keys->k = 0;
+	if (key == 256)
+		keys->ctrl = 0;
 	return (0);
 }

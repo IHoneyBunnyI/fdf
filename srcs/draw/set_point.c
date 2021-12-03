@@ -3,7 +3,6 @@
 
 t_point set_point(t_fdf *fdf, t_point p)
 {
-
 	if (fdf->keys->is_isometric)
 	{
 		fdf->camera->offset_x = 0;

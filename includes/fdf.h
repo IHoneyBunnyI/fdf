@@ -64,6 +64,7 @@ typedef struct keys
 	char j;
 	char k;
 	char l;
+	char ctrl;
 }	t_keys;
 
 typedef struct point

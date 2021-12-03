@@ -23,9 +23,9 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 			fdf->camera->offset_y -= 3;
 	if (keys->s || keys->down)
 			fdf->camera->offset_y += 3;
-	if (keys->alpha_plus || (!fdf->keys->shift && fdf->keys->j))
+	if (keys->alpha_plus || fdf->keys->j)
 		fdf->camera->alpha += 0.05;
-	if (keys->alpha_minus || (!fdf->keys->shift && fdf->keys->k))
+	if (keys->alpha_minus || fdf->keys->k)
 		fdf->camera->alpha -= 0.05;
 	if (keys->beta_plus || (!fdf->keys->shift && fdf->keys->l))
 		fdf->camera->beta += 0.05;
@@ -41,7 +41,8 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 		fdf->camera->beta += 0.04;
 		fdf->camera->gamma += 0.04;
 	}
-	if (!keys->shift && keys->invert_color)
+	//инвертировать цвет
+	if (!keys->shift && !keys->ctrl && keys->invert_color)
 	{
 		t_point **points;
 		points = fdf->points;
@@ -55,31 +56,47 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 		}
 		keys->invert_color = 0;
 	}
+	//вся карта рандомного цвета
 	if (keys->shift && keys->invert_color)
 	{
-		srand(time(0));
 		t_point **points;
 		points = fdf->points;
+		srand(time(0));
+		int new_color  = rand() % 0xFFFFFF;
 		for (int i = 0; i < fdf->map->height_map; i++)
 		{
 			for (int j = 0; j < fdf->map->width_map; j++)
-			{
-				if (points[i][j].color != 0xFFFFFF)
-					points[i][j].color = rand() % 0xFFFFFF;
-			}
+					points[i][j].color = new_color;
 		}
 		keys->invert_color = 0;
 	}
+	//рандомный цвет радуга- шум телека
+	if (keys->ctrl && keys->invert_color)
+	{
+		t_point **points;
+		points = fdf->points;
+		srand(time(0));
+		for (int i = 0; i < fdf->map->height_map; i++)
+		{
+			for (int j = 0; j < fdf->map->width_map; j++)
+				if (points[i][j].color != 0xFFFFFF)
+					points[i][j].color = rand() % 0xFFFFFF;
+		}
+		keys->invert_color = 0;
+	}
+	// увеличить координату z
 	if (keys->shift && keys->plus)
 	{
 		if (fdf->camera->z_coefficient < 10)
 			fdf->camera->z_coefficient += 0.05;
 	}
+	// уменьшить координату z
 	if (keys->shift && keys->minus)
 	{
 		if (fdf->camera->z_coefficient > 0)
 			fdf->camera->z_coefficient -= 0.05;
 	}
+	// вернуть первоначальные цвета
 	if (keys->is_isometric)
 	{
 		for (int i = 0; i < fdf->map->height_map; i++)

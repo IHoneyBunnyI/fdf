@@ -37,7 +37,6 @@ int count_step(int width, int height)
 	int step;
 
 	step = (width * height / 65000);
-	/*printf("%d\n", step);*/
 	if (step == 0)
 		return 1;
 	return step;

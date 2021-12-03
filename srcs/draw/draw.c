@@ -32,6 +32,17 @@ t_point make_point(int x, int y, int color)
 	return (point);
 }
 
+int count_step(int width, int height)
+{
+	int step;
+
+	step = (width * height / 65000);
+	/*printf("%d\n", step);*/
+	if (step == 0)
+		return 1;
+	return step;
+}
+
 int draw(t_fdf *fdf, t_mlx *mlx)
 {
 	t_map *map;
@@ -44,7 +55,7 @@ int draw(t_fdf *fdf, t_mlx *mlx)
 	check_keys(fdf, keys);
 
 	/*printf("n= %d\n", map->height_map * map->width_map);*/
-	int step = 1; //тут должна быть функция подсчета шага
+	int step = count_step(fdf->map->width_map, fdf->map->height_map); //тут должна быть функция подсчета шага
 	for (int i = 0; i < map->height_map - step; i += step)
 	{
 		for (int j = 0; j < map->width_map - step; j += step)

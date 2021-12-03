@@ -3,10 +3,10 @@
 #include <stdio.h> //for size_t
 
 #define ERROR -1
-//#define WIDTH 1280
-//#define HEIGHT 720
-#define WIDTH 2560
-#define HEIGHT 1440
+#define WIDTH 1280
+#define HEIGHT 720
+//#define WIDTH 2560
+//#define HEIGHT 1440
 
 typedef struct rgb_color
 {

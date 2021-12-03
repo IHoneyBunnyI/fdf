@@ -63,7 +63,7 @@ $(NAME) : $(MLX) $(OBJS)
 		Raindbow color:\t (ctrl + C)\n\
 		Infinity rotate:\t (R)\n\
 		Change height:\t (shift and +/-)\n\n\
-		"'
+		" buttons "OK"'
 
 $(MLX):
 	$(MAKE) -C $(MLX_D) 2>/dev/null

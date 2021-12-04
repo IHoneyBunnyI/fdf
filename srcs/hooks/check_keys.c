@@ -7,13 +7,13 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 	if (!keys->shift && keys->plus)
 	{
 		fdf->map->square_size += 1;
-		fdf->camera->offset_y -= 10;
+		fdf->camera->offset_y -= fdf->map->height_map / 2;
 	}
 	if (!keys->shift && keys->minus)
 		if (fdf->map->square_size >= 2)
 		{
 			fdf->map->square_size -= 1;
-			fdf->camera->offset_y += 10;
+			fdf->camera->offset_y += fdf->map->height_map / 2;
 		}
 	if (keys->a || keys->left)
 			fdf->camera->offset_x -= 3;
@@ -107,6 +107,26 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 					fdf->points[i][j].color = fdf->points[i][j].first_color;
 			}
 		}
+	}
+	if (keys->mouse_zoom == 1)
+	{
+		fdf->map->square_size += 10;
+		fdf->camera->offset_y -= (fdf->map->height_map / 2) * 10;
+		keys->mouse_zoom = 0;
+	}
+	if (keys->mouse_zoom == -1)
+	{
+		if (fdf->map->square_size >= 2)
+		{
+			if (fdf->map->square_size < 10)
+			{
+				fdf->map->square_size = 2;
+				return;
+			}
+			fdf->map->square_size -= 10;
+		}
+		fdf->camera->offset_y += (fdf->map->height_map / 2) * 10;
+		keys->mouse_zoom = 0;
 	}
 }
 

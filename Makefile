@@ -1,6 +1,6 @@
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -Imlx -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Iincludes -Imlx -g -Ofast -fsanitize=address
 MLXFLAGS = -framework OpenGL -framework AppKit -Lmlx -lmlx
 MLX_D = mlx/
 MLX = $(MLX_D)libmlx.a

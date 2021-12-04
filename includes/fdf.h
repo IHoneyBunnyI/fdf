@@ -66,6 +66,7 @@ typedef struct keys
 	char k;
 	char l;
 	char ctrl;
+	char mouse_zoom;
 }	t_keys;
 
 typedef struct point
@@ -141,4 +142,6 @@ t_point set_point(t_fdf *fdf, t_point p);
 void	rotate_x(t_point *p, double alpha);
 void	rotate_y(t_point *p, double beta);
 void	rotate_z(t_point *p, double gamma);
+int mouse_up_hook(int button, int x, int y, void *keys_old);
+int mouse_down_hook(int button, int x, int y, void *keys_old);
 #endif

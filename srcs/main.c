@@ -52,6 +52,7 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera)
 	keys->k = 0;
 	keys->l = 0;
 	keys->ctrl = 0;
+	keys->mouse_zoom = 0;
 
 	camera->alpha = 0;
 	camera->beta = 0;
@@ -90,6 +91,8 @@ int main(int ac, char **av)
 	mlx_hook(mlx.win, 17, 0, &cross_hook, &map);
 	mlx_hook(mlx.win, 2, 0, &key_down_hook, &keys);
 	mlx_hook(mlx.win, 3, 0, &key_up_hook, &keys);
+	mlx_hook(mlx.win, 4, 0, mouse_down_hook, &keys);
+	mlx_hook(mlx.win, 5, 0, mouse_up_hook, &keys);
 
 	mlx_loop_hook(mlx.ptr, &draw, &fdf);
 

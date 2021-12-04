@@ -108,25 +108,31 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 			}
 		}
 	}
-	if (keys->mouse_zoom == 1)
+	static int time = 0;
+	if (keys->mouse_zoom == 1 && time != 15)
 	{
-		fdf->map->square_size += 10;
-		fdf->camera->offset_y -= (fdf->map->height_map / 2) * 10;
-		keys->mouse_zoom = 0;
+		fdf->map->square_size += 1;
+		fdf->camera->offset_y -= (fdf->map->height_map / 2) * 1;
+		time++;
+		if (time == 15)
+		{
+			time = 0;
+			keys->mouse_zoom = 0;
+		}
 	}
-	if (keys->mouse_zoom == -1)
+	if (keys->mouse_zoom == -1 && time != 15)
 	{
 		if (fdf->map->square_size >= 2)
 		{
-			if (fdf->map->square_size < 10)
-			{
-				fdf->map->square_size = 2;
-				return;
-			}
-			fdf->map->square_size -= 10;
+			fdf->map->square_size -= 1;
+			fdf->camera->offset_y += (fdf->map->height_map / 2) * 1;
 		}
-		fdf->camera->offset_y += (fdf->map->height_map / 2) * 10;
-		keys->mouse_zoom = 0;
+		time++;
+		if (time == 15)
+		{
+			time = 0;
+			keys->mouse_zoom = 0;
+		}
 	}
 }
 

@@ -8,7 +8,6 @@ int mouse_down_hook(int button, int x, int y, void *keys_old)
 	(void)x;
 	(void)y;
 	(void)keys;
-	printf("%d\n", button);
 	if (button == 5)
 		keys->mouse_zoom = 1;
 	if (button == 4)

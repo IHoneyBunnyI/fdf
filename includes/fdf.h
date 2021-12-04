@@ -15,6 +15,16 @@ typedef struct rgb_color
 	int blue;
 }	t_rgb_color;
 
+typedef struct map
+{
+	char **map;
+	int width_map;
+	int height_map;
+	int max_z;
+	int min_z;
+	int square_size;
+}	t_map;
+
 typedef struct mlx
 {
 	void *ptr;
@@ -26,15 +36,6 @@ typedef struct mlx
 	int endian;
 }	t_mlx;
 
-typedef struct map
-{
-	char **map;
-	int width_map;
-	int height_map;
-	int max_z;
-	int min_z;
-	int square_size;
-}	t_map;
 
 typedef struct keys
 {

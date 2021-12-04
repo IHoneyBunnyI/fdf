@@ -62,6 +62,7 @@ t_point **parse_points(t_map *map)
 			points[y][x].y = y;
 			points[y][x].z = ft_atoi(split[x]);
 		}
+		free_split(split);
 	}
 	return points;
 }

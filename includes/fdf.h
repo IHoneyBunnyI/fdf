@@ -67,6 +67,8 @@ typedef struct keys
 	char l;
 	char ctrl;
 	char mouse_zoom;
+	char left_mouse;
+	char right_mouse;
 }	t_keys;
 
 typedef struct point
@@ -88,11 +90,18 @@ typedef struct s_camera
 	int offset_y;
 } t_camera;
 
+typedef struct mouse
+{
+	int x;
+	int y;
+} t_mouse;
+
 typedef struct fdf
 {
 	t_mlx *mlx;
 	t_map *map;
 	t_keys *keys;
+	t_mouse *mouse;
 	t_camera *camera;
 	t_point **points;
 }	t_fdf;
@@ -144,4 +153,5 @@ void	rotate_y(t_point *p, double beta);
 void	rotate_z(t_point *p, double gamma);
 int mouse_up_hook(int button, int x, int y, void *keys_old);
 int mouse_down_hook(int button, int x, int y, void *keys_old);
+int mouse_move(int x, int y, void *fdf_old);
 #endif

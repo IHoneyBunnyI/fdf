@@ -11,7 +11,7 @@ void mlx_start(t_mlx *mlx)
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->size_line, &mlx->endian);
 }
 
-void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera)
+void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera, t_mouse *mouse)
 {
 	map->map = 0;
 	map->width_map = 0;
@@ -53,6 +53,8 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera)
 	keys->l = 0;
 	keys->ctrl = 0;
 	keys->mouse_zoom = 0;
+	keys->left_mouse = 0;
+	keys->right_mouse = 0;
 
 	camera->alpha = 0;
 	camera->beta = 0;
@@ -61,10 +63,14 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera)
 	camera->offset_x = 0;
 	camera->offset_y = 0;
 
+	mouse->x = 0;
+	mouse->y = 0;
+
 	fdf->map = map;
 	fdf->mlx = mlx;
 	fdf->keys = keys;
 	fdf->camera = camera;
+	fdf->mouse = mouse;
 	fdf->points = 0;
 }
 
@@ -74,9 +80,10 @@ int main(int ac, char **av)
 	t_mlx mlx;
 	t_keys keys;
 	t_camera camera;
+	t_mouse mouse;
 	t_fdf fdf;
 
-	init(&map, &mlx, &keys, &fdf, &camera);
+	init(&map, &mlx, &keys, &fdf, &camera, &mouse);
 	if (ac != 2)
 		return (error("\033[1;41mError arguments\033[0m"));
 	map = parse_map(av[1]);
@@ -93,6 +100,7 @@ int main(int ac, char **av)
 	mlx_hook(mlx.win, 3, 0, &key_up_hook, &keys);
 	mlx_hook(mlx.win, 4, 0, mouse_down_hook, &keys);
 	mlx_hook(mlx.win, 5, 0, mouse_up_hook, &keys);
+	mlx_hook(mlx.win, 6, 0, mouse_move, &fdf);
 
 	mlx_loop_hook(mlx.ptr, &draw, &fdf);
 

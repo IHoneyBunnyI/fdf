@@ -108,6 +108,7 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 			}
 		}
 	}
+	//обработка зума мышкой
 	static int time = 0;
 	if (keys->mouse_zoom == 1 && time != 15)
 	{

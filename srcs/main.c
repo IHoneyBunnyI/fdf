@@ -65,7 +65,6 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera)
 	fdf->keys = keys;
 	fdf->camera = camera;
 	fdf->points = 0;
-	//a=-0.750000 b=-0.650000 g=0.500000
 }
 
 int main(int ac, char **av)
@@ -83,6 +82,8 @@ int main(int ac, char **av)
 	if (!map.map)
 		return (error("\033[1;41mError map\033[0m"));
 	fdf.points = parse_points(&map);
+	if (fdf.points == 0)
+		return 0;
 
 	mlx_start(&mlx);
 

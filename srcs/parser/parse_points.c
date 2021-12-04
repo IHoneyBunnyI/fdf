@@ -1,5 +1,6 @@
 #include "fdf.h"
 #include <stdlib.h>
+#include <math.h>
 
 int find_color(char *s)
 {
@@ -28,7 +29,6 @@ int get_color_from_map(char *s)
 	return color;
 }
 
-#include <math.h>
 t_point **parse_points(t_map *map)
 {
 	t_point **points;
@@ -36,11 +36,13 @@ t_point **parse_points(t_map *map)
 	int x;
 	char **split;
 
-	points = malloc(sizeof(t_point *) * (map->height_map + 1));
+	if ((points = malloc(sizeof(t_point *) * (map->height_map + 1))) == 0)
+		return 0;
 	points[map->height_map] = 0;
 	y = -1;
 	while (++y < map->height_map)
-		points[y] = malloc(sizeof(t_point) * (map->width_map + 1));
+		if ((points[y] = malloc(sizeof(t_point) * (map->width_map + 1))) == 0)
+			return 0;
 	y = -1;
 	while (map->map[++y])
 	{

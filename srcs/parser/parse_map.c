@@ -127,7 +127,11 @@ t_map parse_map(char *map_path)
 		return map;
 	}
 	fd_map = open(map_path, O_RDONLY);
-	map.map = malloc_bzero(sizeof(char *) * (map.height_map + 1));
+	if ((map.map = malloc_bzero(sizeof(char *) * (map.height_map + 1))) == 0)
+	{
+		map.map = 0;
+		return map;
+	}
 	fill_map(map.map, fd_map);
 	if (check_map(&map, map.height_map) == ERROR)
 	{

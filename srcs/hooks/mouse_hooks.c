@@ -52,8 +52,8 @@ int mouse_move(int x, int y, void *fdf_old)
 	}
 	if (fdf->keys->right_mouse)
 	{
-		fdf->camera->offset_x += (x - prev_x);
-		fdf->camera->offset_y += (y - prev_y);
+		fdf->camera->offset_x += (x - prev_x) / 2;
+		fdf->camera->offset_y += (y - prev_y) / 2;
 	}
 	return (0);
 }

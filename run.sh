@@ -1,4 +1,5 @@
 #/bin/zsh
 
 touch srcs/main.c
-make && ./fdf $1
+make
+./fdf $1 &

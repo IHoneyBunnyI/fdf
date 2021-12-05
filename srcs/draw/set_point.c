@@ -7,6 +7,7 @@ t_point set_point(t_fdf *fdf, t_point p)
 	{
 		fdf->camera->offset_x = 0;
 		fdf->camera->offset_y = 0;
+		fdf->map->square_size = ft_min(WIDTH / fdf->map->width_map / 2, HEIGHT / fdf->map->height_map / 2);
 		fdf->camera->alpha = 0.;
 		fdf->camera->beta = 0.;
 		fdf->camera->gamma = 0;
@@ -44,6 +45,6 @@ t_point set_point(t_fdf *fdf, t_point p)
 	fdf->camera->beta = prev_b;
 	fdf->camera->gamma = prev_g;
 	p.x += (WIDTH / 2) + fdf->camera->offset_x;
-	p.y += (HEIGHT + fdf->map->height_map * fdf->map->square_size / 2) / 2 + fdf->camera->offset_y;
+	p.y += ((HEIGHT + fdf->map->height_map * fdf->map->square_size / 2) / 2) + fdf->camera->offset_y;
 	return (p);
 }

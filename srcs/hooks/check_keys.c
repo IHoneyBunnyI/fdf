@@ -7,13 +7,13 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 	if (!keys->shift && keys->plus)
 	{
 		fdf->map->square_size += 1;
-		fdf->camera->offset_y -= fdf->map->height_map / 2;
+		fdf->camera->offset_y -= fdf->map->height_map / 3;
 	}
 	if (!keys->shift && keys->minus)
 		if (fdf->map->square_size >= 2)
 		{
 			fdf->map->square_size -= 1;
-			fdf->camera->offset_y += fdf->map->height_map / 2;
+			fdf->camera->offset_y += fdf->map->height_map / 3;
 		}
 	if (keys->a || keys->left)
 			fdf->camera->offset_x -= 3;

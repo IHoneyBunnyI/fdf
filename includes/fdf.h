@@ -158,4 +158,5 @@ void	rotate_z(t_point *p, double gamma);
 int mouse_up_hook(int button, int x, int y, void *keys_old);
 int mouse_down_hook(int button, int x, int y, void *keys_old);
 int mouse_move(int x, int y, void *fdf_old);
+int ft_min(int a, int b);
 #endif

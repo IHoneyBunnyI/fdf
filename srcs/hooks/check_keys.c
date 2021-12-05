@@ -37,10 +37,22 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 		fdf->camera->gamma -= 0.05;
 	if (keys->rotate)
 	{
-		fdf->camera->alpha += 0.04;
-		fdf->camera->beta += 0.04;
-		fdf->camera->gamma += 0.04;
+		/*printf("%f, %d\n", fdf->camera->speed_rotate, fdf->camera->acceleration);*/
+		if (fdf->camera->speed_rotate < 1.0 && fdf->camera->acceleration == 1)
+			fdf->camera->speed_rotate += 0.002;
+		if (fdf->camera->speed_rotate > 1 || fdf->camera->acceleration == -1)
+		{
+			fdf->camera->acceleration = -1;
+			fdf->camera->speed_rotate -= 0.001;
+			if (fdf->camera->speed_rotate < -1)
+				fdf->camera->acceleration = 1;
+		}
+		fdf->camera->alpha += 0.04 * fdf->camera->speed_rotate;
+		fdf->camera->beta += 0.04 * fdf->camera->speed_rotate;
+		fdf->camera->gamma += 0.04 * fdf->camera->speed_rotate;
 	}
+	else if (keys->gamma_rotate)
+		fdf->camera->gamma += 0.01;
 	//инвертировать цвет
 	if (!keys->shift && !keys->ctrl && keys->invert_color)
 	{

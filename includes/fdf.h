@@ -59,6 +59,7 @@ typedef struct keys
 	char is_isometric;
 	char is_parralel;
 	char rotate;
+	char gamma_rotate;
 	char invert_color;
 	char shift;
 	char h;
@@ -89,6 +90,8 @@ typedef struct s_camera
 	float z_coefficient;
 	int offset_x;
 	int offset_y;
+	float speed_rotate;
+	int acceleration;
 } t_camera;
 
 typedef struct mouse

@@ -45,6 +45,7 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera, t_
 	keys->is_isometric = 0;
 	keys->is_parralel = 0;
 	keys->rotate = 0;
+	keys->gamma_rotate = 0;
 	keys->invert_color = 0;
 	keys->shift = 0;
 	keys->h = 0;
@@ -63,6 +64,8 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera, t_
 	camera->z_coefficient = 1;
 	camera->offset_x = 0;
 	camera->offset_y = 0;
+	camera->speed_rotate = 0;
+	camera->acceleration = 1;
 
 	mouse->x = 0;
 	mouse->y = 0;

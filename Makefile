@@ -43,7 +43,7 @@ SRCS = $(addprefix srcs/, $(FILES))
 OBJS = $(FILES_O:.c=.o)
 OBJDIR = objs/
 
-objs/%.o : %.c Makefile $(HEADERS) 
+objs/%.o : %.c Makefile $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(OBJDIR) $(NAME)
@@ -52,7 +52,7 @@ $(OBJDIR):
 	@mkdir objs/
 $(NAME) : $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(MLXFLAGS) $(OBJS) -Lmlx -lmlx
-	#@osascript -e 'display dialog "\t\t\t\t\t\tFDF\n\
+	@osascript -e 'display dialog "\t\t\t\t\t\tFDF\n\
 		Basic instructions\n\n\
 		Move:\t\t (\"w a s d\" or arrows)\n\
 		Rotate:\t\t (NUM_PAD or \"h j k l\")\n\
@@ -63,6 +63,7 @@ $(NAME) : $(MLX) $(OBJS)
 		Raindbow color:\t (ctrl + C)\n\
 		Infinity rotate:\t (R)\n\
 		Change height:\t (shift and +/-)\n\n\
+		Mouse controls\n\n\
 		" buttons "OK"'
 
 $(MLX):

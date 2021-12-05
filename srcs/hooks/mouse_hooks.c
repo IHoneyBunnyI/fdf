@@ -8,11 +8,13 @@ int mouse_down_hook(int button, int x, int y, void *keys_old)
 	(void)x;
 	(void)y;
 	(void)keys;
-	/*printf("%d\n", button);*/
+	/*printf("%d %d\n", x, y);*/
 	if (button == 1)
 		keys->left_mouse = 1;
 	if (button == 2)
-		keys->right_mouse= 1;
+		keys->right_mouse = 1;
+	if (button == 3)
+		keys->wheel = 1;
 	if (button == 5)
 		keys->mouse_zoom = 1;
 	if (button == 4)
@@ -31,6 +33,8 @@ int mouse_up_hook(int button, int x, int y, void *keys_old)
 		keys->left_mouse = 0;
 	if (button == 2)
 		keys->right_mouse= 0;
+	if (button == 3)
+		keys->wheel = 0;
 	return (1);
 }
 
@@ -55,5 +59,7 @@ int mouse_move(int x, int y, void *fdf_old)
 		fdf->camera->offset_x += (x - prev_x) / 2;
 		fdf->camera->offset_y += (y - prev_y) / 2;
 	}
+	if (fdf->keys->wheel)
+		fdf->camera->gamma += (x - prev_x) * 0.004;
 	return (0);
 }

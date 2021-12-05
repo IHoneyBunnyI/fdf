@@ -11,7 +11,7 @@ int cross_hook(t_map *map)
 
 int key_down_hook(int key, t_keys *keys)
 {
-	printf("%d\n", key);
+	/*printf("%d\n", key);*/
 	if (key == 53)
 		exit(0);
 	if (key == 13)

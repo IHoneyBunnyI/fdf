@@ -69,6 +69,7 @@ typedef struct keys
 	char mouse_zoom;
 	char left_mouse;
 	char right_mouse;
+	char wheel;
 }	t_keys;
 
 typedef struct point

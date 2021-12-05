@@ -55,6 +55,7 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera, t_
 	keys->mouse_zoom = 0;
 	keys->left_mouse = 0;
 	keys->right_mouse = 0;
+	keys->wheel = 0;
 
 	camera->alpha = 0;
 	camera->beta = 0;

@@ -57,14 +57,18 @@ $(NAME) : $(MLX) $(OBJS)
 		Move:\t\t (\"w a s d\" or arrows)\n\
 		Rotate:\t\t (NUM_PAD or \"h j k l\")\n\
 		Zoom:\t\t (+ or -)\n\n\
+		Mouse controls\n\n\
+		Rotate:\t\t(left click and wheel)\n\
+		Move:\t\t(right click)\n\
+		Zoom:\t\t(spin the wheel)\n\n\
 		Additional instructions\n\n\
 		Invert color:\t\t (C)\n\
 		Ranom color:\t\t (shift + C)\n\
 		Raindbow color:\t (ctrl + C)\n\
 		Infinity rotate:\t (R)\n\
-		Change height:\t (shift and +/-)\n\n\
-		Mouse controls\n\n\
-		" buttons "OK"'
+		Change height:\t (shift and +/-)\n\
+		Starting position:\t (i)\n\
+		" buttons "OK"' &
 
 $(MLX):
 	$(MAKE) -C $(MLX_D) 2>/dev/null

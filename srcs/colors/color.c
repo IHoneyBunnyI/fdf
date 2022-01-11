@@ -1,19 +1,18 @@
 #include "fdf.h"
 
-int		make_color(int r, int g, int b)
+int	make_color(int r, int g, int b)
 {
-	int t = 0; 
-	return (t << 24 | r << 16 | g << 8 | b);
+	return (r << 16 | g << 8 | b);
 }
 
-double percent(int start, int end, int current)
+double	percent(int start, int end, int current)
 {
-    double placement;
-    double distance;
+	double	placement;
+	double	distance;
 
-    placement = current - start;
-    distance = end - start;
-    return ((distance == 0) ? 1.0 : (placement / distance));
+	placement = current - start;
+	distance = end - start;
+	return ((distance == 0) A 1.0 B (placement / distance));
 }
 
 int	get_light(int start, int end, double percentage)

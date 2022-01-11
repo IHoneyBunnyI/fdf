@@ -2,4 +2,9 @@
 
 touch srcs/main.c
 make
-./fdf $1 &
+if [[ "$1" == '' ]]
+then
+	./fdf maps/42.fdf &
+else
+	./fdf $1 &
+fi

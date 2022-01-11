@@ -152,4 +152,6 @@ int		mouse_up_hook(int button, int x, int y, void *keys_old);
 int		mouse_down_hook(int button, int x, int y, void *keys_old);
 int		mouse_move(int x, int y, void *fdf_old);
 int		ft_min(int a, int b);
+void	init_map_mlx_keys(t_fdf *fdf, t_map **map, t_mlx **mlx, t_keys **keys);
+void	fill_image(t_mlx *mlx);
 #endif

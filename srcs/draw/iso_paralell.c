@@ -17,7 +17,6 @@ void iso(t_fdf *fdf, t_point *p1, t_point *p2)
 	p2->x += (fdf->map->width_map * fdf->map->square_size) / 2;
 	p1->y += (fdf->map->height_map * fdf->map->square_size) / 2;
 	p2->y += (fdf->map->height_map * fdf->map->square_size) / 2;
-
 	previous_1_x = p1->x;
 	previous_1_y = p1->y;
 	previous_2_x = p2->x;
@@ -40,7 +39,6 @@ void parallel(t_fdf *fdf, t_point *p1, t_point *p2)
 	p2->y *= fdf->map->square_size;
 	p1->z *= fdf->map->square_size;
 	p2->z *= fdf->map->square_size;
-
 	fdf->camera->offset_x = 0;
 	fdf->camera->offset_y = 0;
 	fdf->camera->alpha = 0;

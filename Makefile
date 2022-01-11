@@ -13,6 +13,7 @@ FILES =	color.c\
 		utils_2.c\
 		bresenham.c\
 		draw.c\
+		draw_util.c\
 		keyboard_hooks.c\
 		mouse_hooks.c\
 		main.c\
@@ -52,23 +53,23 @@ $(OBJDIR):
 	@mkdir objs/
 $(NAME) : $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(MLXFLAGS) $(OBJS) -Lmlx -lmlx
-	@osascript -e 'display dialog "\t\t\t\t\t\tFDF\n\
-		Basic instructions\n\n\
-		Move:\t\t (\"w a s d\" or arrows)\n\
-		Rotate:\t\t (NUM_PAD or \"h j k l\")\n\
-		Zoom:\t\t (+ or -)\n\n\
-		Mouse controls\n\n\
-		Rotate:\t\t(left click and wheel)\n\
-		Move:\t\t(right click)\n\
-		Zoom:\t\t(spin the wheel)\n\n\
-		Additional instructions\n\n\
-		Invert color:\t\t (C)\n\
-		Ranom color:\t\t (shift + C)\n\
-		Raindbow color:\t (ctrl + C)\n\
-		Infinity rotate:\t (R)\n\
-		Change height:\t (shift and +/-)\n\
-		Starting position:\t (i)\n\
-		" buttons "OK"' > /dev/null &
+	#@osascript -e 'display dialog "\t\t\t\t\t\tFDF\n\
+		#Basic instructions\n\n\
+		#Move:\t\t (\"w a s d\" or arrows)\n\
+		#Rotate:\t\t (NUM_PAD or \"h j k l\")\n\
+		#Zoom:\t\t (+ or -)\n\n\
+		#Mouse controls\n\n\
+		#Rotate:\t\t(left click and wheel)\n\
+		#Move:\t\t(right click)\n\
+		#Zoom:\t\t(spin the wheel)\n\n\
+		#Additional instructions\n\n\
+		#Invert color:\t\t (C)\n\
+		#Ranom color:\t\t (shift + C)\n\
+		#Raindbow color:\t (ctrl + C)\n\
+		#Infinity rotate:\t (R)\n\
+		#Change height:\t (shift and +/-)\n\
+		#Starting position:\t (i)\n\
+		#" buttons "OK"' > /dev/null &
 
 $(MLX):
 	$(MAKE) -C $(MLX_D) 2>/dev/null

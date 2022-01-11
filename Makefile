@@ -68,7 +68,7 @@ $(NAME) : $(MLX) $(OBJS)
 		Infinity rotate:\t (R)\n\
 		Change height:\t (shift and +/-)\n\
 		Starting position:\t (i)\n\
-		" buttons "OK"' &
+		" buttons "OK"' > /dev/null &
 
 $(MLX):
 	$(MAKE) -C $(MLX_D) 2>/dev/null

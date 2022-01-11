@@ -105,7 +105,7 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 	// уменьшить координату z
 	if (keys->shift && keys->minus)
 	{
-		if (fdf->camera->z_coefficient > 0)
+		if (fdf->camera->z_coefficient > -0.5)
 			fdf->camera->z_coefficient -= 0.05;
 	}
 	// вернуть первоначальные цвета

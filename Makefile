@@ -79,7 +79,7 @@ $(NAME) : $(MLX) $(OBJS)
 		" buttons "OK"' > /dev/null &
 
 $(MLX):
-	$(MAKE) -C $(MLX_D) 2>/dev/null
+	@$(MAKE) -C $(MLX_D) 2>/dev/null
 
 clean:
 	@$(MAKE) -C $(MLX_D) clean

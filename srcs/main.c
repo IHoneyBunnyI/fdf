@@ -78,6 +78,16 @@ void init(t_map *map, t_mlx *mlx, t_keys *keys, t_fdf *fdf, t_camera *camera, t_
 	fdf->points = 0;
 }
 
+void hooks(t_mlx *mlx, t_map *map, t_keys *keys, t_fdf *fdf)
+{
+	mlx_hook(mlx->win, 17, 0, &cross_hook, map);
+	mlx_hook(mlx->win, 2, 0, &key_down_hook, keys);
+	mlx_hook(mlx->win, 3, 0, &key_up_hook, keys);
+	mlx_hook(mlx->win, 4, 0, mouse_down_hook, keys);
+	mlx_hook(mlx->win, 5, 0, mouse_up_hook, keys);
+	mlx_hook(mlx->win, 6, 0, mouse_move, fdf);
+}
+
 int main(int ac, char **av)
 {
 	t_map map;
@@ -96,18 +106,9 @@ int main(int ac, char **av)
 	fdf.points = parse_points(&map);
 	if (fdf.points == 0)
 		return 0;
-
 	mlx_start(&mlx);
-
-	mlx_hook(mlx.win, 17, 0, &cross_hook, &map);
-	mlx_hook(mlx.win, 2, 0, &key_down_hook, &keys);
-	mlx_hook(mlx.win, 3, 0, &key_up_hook, &keys);
-	mlx_hook(mlx.win, 4, 0, mouse_down_hook, &keys);
-	mlx_hook(mlx.win, 5, 0, mouse_up_hook, &keys);
-	mlx_hook(mlx.win, 6, 0, mouse_move, &fdf);
-
+	hooks(&mlx, &map, &keys, &fdf);
 	mlx_loop_hook(mlx.ptr, &draw, &fdf);
-
 	free_split(map.map);
 	mlx_loop(mlx.ptr);
 }

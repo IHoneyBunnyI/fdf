@@ -1,36 +1,7 @@
 #include "fdf.h"
 #include <math.h>
 #include <stdlib.h>
-
-
-int ipart_(double x)
-{
-	return (int)x;
-}
-
-int round_(int x)
-{
-	return ((int)(((double)(x))+0.5));
-}
-
-double fpart_(double x)
-{
-	return (((double)(x))-(double)ipart_(x));
-}
-
-double rfpart_(double x)
-{
-	return (1.0-fpart_(x));
-}
-
-void _dla_changebrightness(t_rgb_color* from, t_rgb_color* to, float br)
-{
-	if (br > 1.0)
-		br = 1.0;
-	to->red = br * (float)from->red;
-	to->green = br * (float)from->green;
-	to->blue = br * (float)from->blue;
-}
+#include "xiaolin.h"
 
 void _dla_plot(t_mlx *mlx, int x, int y, t_rgb_color* col, float br)
 {
@@ -49,25 +20,17 @@ void plot_(t_mlx *mlx, int x,int y, double d, int c)
 	_dla_plot(mlx, x, y, &f, d);
 }
 
-#include <unistd.h>
-void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
+void draw_line_xiaolin_wu_util_1(t_fdf *fdf, t_point p1, t_point p2)
 {
-	if (p1.x > WIDTH && p1.y > HEIGHT)
-		return ;
-	if (p1.x < 0 && p1.y < 0 && p2.x < 0 && p2.y < 0)
-		return ;
-	//DRAW
-	double dx = (double)p2.x - p1.x;
-	double dy = (double)p2.y - p1.y;
-	t_point cur = p1;
-	t_point delta;
-	delta.x = abs(p2.x - p1.x);
-	delta.y = abs(p2.y - p1.y);
+		t_point cur = p1;
+		t_point delta;
+		delta.x = abs(p2.x - p1.x);
+		delta.y = abs(p2.y - p1.y);
+		int sx = p1.x < p2.x ? 1 : -1;
+		int sy = p1.y < p2.y ? 1 : -1;
 
-	int sx = p1.x < p2.x ? 1 : -1;
-	int sy = p1.y < p2.y ? 1 : -1;
-	if (fabs(dx) > fabs(dy))
-	{
+		double dx = (double)p2.x - p1.x;
+		double dy = (double)p2.y - p1.y;
 		if (p2.x < p1.x)
 		{
 			swap_(&p1.x, &p2.x);
@@ -101,9 +64,20 @@ void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
 			intery += gradient;
 			cur.x += sx;
 		}
-	}
-	else 
-	{
+}
+
+
+void draw_line_xiaolin_wu_util_2(t_fdf *fdf, t_point p1, t_point p2)
+{
+		t_point cur = p1;
+		t_point delta;
+		delta.x = abs(p2.x - p1.x);
+		delta.y = abs(p2.y - p1.y);
+		/*int sx = p1.x < p2.x ? 1 : -1;*/
+		int sy = p1.y < p2.y ? 1 : -1;
+
+		double dx = (double)p2.x - p1.x;
+		double dy = (double)p2.y - p1.y;
 		if ( p2.y < p1.y ) {
 			swap_(&p1.x, &p2.x);
 			swap_(&p1.y, &p2.y);
@@ -133,5 +107,20 @@ void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
 			interx += gradient;
 			cur.y += sy;
 		}
-	}
+}
+
+void draw_line_xiaolin_wu(t_fdf *fdf, t_point p1, t_point p2)
+{
+	if (p1.x > WIDTH && p1.y > HEIGHT)
+		return ;
+	if (p1.x < 0 && p1.y < 0 && p2.x < 0 && p2.y < 0)
+		return ;
+	//DRAW
+
+	double dx = (double)p2.x - p1.x;
+	double dy = (double)p2.y - p1.y;
+	if (fabs(dx) > fabs(dy))
+		draw_line_xiaolin_wu_util_1(fdf, p1, p2);
+	else 
+		draw_line_xiaolin_wu_util_2(fdf, p1, p2);
 }

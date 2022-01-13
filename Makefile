@@ -20,6 +20,7 @@ FILES =	color.c\
 		mlx.c\
 		parse_map.c\
 		xiaolin.c\
+		xiaolin_util.c\
 		parse_points.c\
 		utils_parser.c\
 		check_keys.c\

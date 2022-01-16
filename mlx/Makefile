@@ -12,10 +12,17 @@ CC = gcc
 # add to match string put with X11 in size and position
 CFLAGS+= -DSTRINGPUTX11
 
+NB = $(words $(SRC))
+INDEX = 0
+
 all: $(NOM)
 
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(eval PERCENT=$(shell expr $(INDEX) '*' 100 / $(NB)))
+	@$(eval PROGRESS=$(shell expr $(INDEX) '*' 30 / $(NB)))
+	@printf "\r\033[38;5;94mMAKE MLX %2d%%\033[0m \033[48;5;130m%*s\033[0m %s\033[K" $(PERCENT) $(PROGRESS) #"" $(notdir $@)
+	@$(eval INDEX=$(shell echo $$(($(INDEX)+1))))
 
 %.o : %.m
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -23,6 +30,7 @@ all: $(NOM)
 $(NOM):	$(OBJ)
 	@ar -r $(NOM) $(OBJ)
 	@ranlib $(NOM)
+	@printf "\r\033[38;5;101mMLX DONE\033[0m\033[K\n"
 
 clean:
 	@rm -f $(NOM) $(OBJ) *~

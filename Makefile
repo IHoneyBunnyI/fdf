@@ -7,24 +7,24 @@ MLX = $(MLX_D)libmlx.a
 
 FILES =	color.c\
 		color_gets.c\
-		get_next_line.c\
-		get_next_line_utils.c\
-		utils.c\
-		utils_2.c\
 		bresenham.c\
 		draw.c\
+		iso_paralell.c\
+		mlx.c\
+		rotate.c\
+		set_point.c\
+		xiaolin.c\
+		get_next_line.c\
+		get_next_line_utils.c\
+		check_keys.c\
 		keyboard_hooks.c\
 		mouse_hooks.c\
-		main.c\
-		mlx.c\
 		parse_map.c\
-		xiaolin.c\
 		parse_points.c\
 		utils_parser.c\
-		check_keys.c\
-		iso_paralell.c\
-		set_point.c\
-		rotate.c\
+		utils.c\
+		utils_2.c\
+		main.c\
 
 #VPATH спецмальная переменная, в которой лежит список каталогов в которых следует выполнять поиск
 VPATH = srcs/\
@@ -50,7 +50,7 @@ objs/%.o : %.c Makefile $(HEADERS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@$(eval PERCENT=$(shell expr $(INDEX) '*' 100 / $(NB)))
 	@$(eval PROGRESS=$(shell expr $(INDEX) '*' 30 / $(NB)))
-	@printf "\r\033[38;5;220mMAKE %2d%%\033[0m \033[48;5;220m%*s\033[0m %s\033[K" $(PERCENT) $(PROGRESS) #"" $(notdir $@)
+	@printf "\r\033[38;5;219mMAKE FDF %2d%%\033[0m \033[48;5;129m%*s\033[0m %s\033[K" $(PERCENT) $(PROGRESS) #"" $(notdir $@)
 	@$(eval INDEX=$(shell echo $$(($(INDEX)+1))))
 
 all: $(OBJDIR) $(NAME)
@@ -84,10 +84,10 @@ $(MLX):
 clean:
 	@$(MAKE) -C $(MLX_D) clean
 	@rm -rf $(OBJS)
-	@printf "\033[38;5;76mCLEAN\033[0m\n"
+	@printf "\033[38;5;197mCLEAN\033[0m\n"
 
 fclean : clean
 	@rm -rf $(NAME)
-	@printf "\033[38;5;46mFULL CLEAN\033[0m\n"
+	@printf "\033[38;5;196mFULL CLEAN\033[0m\n"
 
 re: fclean all

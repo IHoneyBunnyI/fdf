@@ -4,6 +4,10 @@
 #include <math.h>
 void draw_line_bresenham(t_fdf *fdf, t_point p1, t_point p2)
 {
+	if (p1.x > WIDTH && p1.y > HEIGHT)
+		return ;
+	if (p1.x < 0 && p1.y < 0 && p2.x < 0 && p2.y < 0)
+		return ;
 	int dx = abs((p2.x - p1.x));
 	int sx = p1.x < p2.x ? 1 : -1;
 	int dy = -abs(p2.y - p1.y);

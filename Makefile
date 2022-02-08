@@ -70,6 +70,7 @@ $(NAME) : $(MLX) $(OBJS)
 		Move:\t\t(right click)\n\
 		Zoom:\t\t(spin the wheel)\n\n\
 		Additional instructions\n\n\
+		Parallel projection: (P)\n\
 		Invert color:\t\t (C)\n\
 		Ranom color:\t\t (shift + C)\n\
 		Raindbow color:\t (ctrl + C)\n\

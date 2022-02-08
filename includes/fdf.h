@@ -95,6 +95,42 @@ typedef struct s_camera
 	int		acceleration;
 }	t_camera;
 
+typedef struct s_intdx
+{
+	int	dx;
+	int	sx;
+	int	dy;
+	int	sy;
+	int	err;
+}	t_intdx;
+
+typedef struct s_xy
+{
+	int x;
+	int y;
+}	t_xy;
+
+typedef struct s_floatdx
+{
+	double	dx;
+	int		sx;
+	double	dy;
+	int		sy;
+	double	err;
+	double gradient;
+	double xend;
+	double yend;
+	double xgap;
+	double ygap;
+	int xpxl1;
+	int ypxl1;
+	double intery;
+	double interx;
+	int xpxl2;
+	int ypxl2;
+}	t_floatdx;
+
+
 typedef struct fdf
 {
 	t_mlx		*mlx;

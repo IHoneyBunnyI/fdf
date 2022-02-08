@@ -4,7 +4,7 @@
 #include <time.h>
 #include <math.h>
 
-t_point	make_point(int x, int y, int color)
+t_point make_point(int x, int y, int color)
 {
 	t_point	point;
 
@@ -90,17 +90,15 @@ int	draw(t_fdf *fdf, t_mlx *mlx)
 	t_point	**points;
 	int		step;
 
+	step = 0;
 	points = fdf->points;
 	init_map_mlx_keys(fdf, &map, &mlx, &keys);
 	fill_image(mlx);
 	check_keys(fdf, keys);
+
 	step = count_step(fdf->map->width_map, fdf->map->height_map);
-	/*step = 3;*/
 	if (step > 2)
-	{
-		/*step = 1;*/
 		draw_with_bresenham(fdf, map, points, step);
-	}
 	else
 		draw_with_xiaolin_wu(fdf, map, points, step);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);

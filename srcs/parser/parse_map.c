@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int lenth_file(char *map_path)
+int length_file(char *map_path)
 {
 	char *line;
 	int len_file;
@@ -120,7 +120,7 @@ t_map parse_map(char *map_path)
 		map.map = 0;
 		return map;
 	}
-	map.height_map = lenth_file(map_path);
+	map.height_map = length_file(map_path);
 	if (map.height_map == ERROR || map.height_map == 0)
 	{
 		map.map = 0;

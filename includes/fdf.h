@@ -110,27 +110,6 @@ typedef struct s_xy
 	int y;
 }	t_xy;
 
-typedef struct s_floatdx
-{
-	double	dx;
-	int		sx;
-	double	dy;
-	int		sy;
-	double	err;
-	double gradient;
-	double xend;
-	double yend;
-	double xgap;
-	double ygap;
-	int xpxl1;
-	int ypxl1;
-	double intery;
-	double interx;
-	int xpxl2;
-	int ypxl2;
-}	t_floatdx;
-
-
 typedef struct fdf
 {
 	t_mlx		*mlx;
@@ -158,7 +137,6 @@ void		draw_line_bresenham(t_fdf *fdf, t_point p0, t_point p1);
 void		draw_line_xiaolin_wu(t_fdf *fdf, t_point p1_in, t_point p2_in);
 int			get_color(t_point current, t_point start, t_point end, t_point delta);
 t_map		parse_map(char *map_path);
-void		swap_(int *a, int *b);
 int			get_r(int color);
 int			get_g(int color);
 int			get_b(int color);

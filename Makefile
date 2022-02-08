@@ -17,6 +17,7 @@ FILES =	color.c\
 		xiaolin.c\
 		xiaolin_util.c\
 		xiaolin_util2.c\
+		xiaolin_util3.c\
 		get_next_line.c\
 		get_next_line_utils.c\
 		check_keys.c\
@@ -34,6 +35,7 @@ FILES =	color.c\
 VPATH = srcs/\
 		srcs/colors/\
 		srcs/draw/\
+		srcs/draw/xiaolin/\
 		srcs/gnl/\
 		srcs/hooks\
 		srcs/parser/\

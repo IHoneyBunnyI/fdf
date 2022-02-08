@@ -16,6 +16,7 @@ FILES =	color.c\
 		set_point.c\
 		xiaolin.c\
 		xiaolin_util.c\
+		xiaolin_util2.c\
 		get_next_line.c\
 		get_next_line_utils.c\
 		check_keys.c\

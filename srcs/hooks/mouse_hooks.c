@@ -41,14 +41,14 @@ int mouse_up_hook(int button, int x, int y, void *keys_old)
 int mouse_move(int x, int y, void *fdf_old)
 {
 	t_fdf *fdf;
-
-	fdf = fdf_old;
 	int prev_x;
 	int prev_y;
-	prev_x = fdf->mouse->x;
-	prev_y =fdf->mouse->y;
-	fdf->mouse->x = x;
-	fdf->mouse->y = y;
+
+	fdf = fdf_old;
+	prev_x = fdf->mouse_x;
+	prev_y =fdf->mouse_y;
+	fdf->mouse_x = x;
+	fdf->mouse_y = y;
 	if (fdf->keys->left_mouse)
 	{
 		fdf->camera->beta += (x - prev_x) * 0.004;

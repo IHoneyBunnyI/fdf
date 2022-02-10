@@ -162,7 +162,7 @@ typedef struct s_intdx
 	int	dy;
 	int	sy;
 	int	err;
-	int e2;
+	int	e2;
 }	t_intdx;
 
 typedef struct s_xy
@@ -232,6 +232,15 @@ t_keys		*init_keys(t_keys *keys);
 t_camera	*init_camera(t_camera *camera);
 void		zoom(t_fdf *fdf, t_keys *keys);
 void		translate(t_fdf *fdf, t_keys *keys);
-void		rotate_R(t_fdf *fdf, t_keys *keys);
+void		rotate_r(t_fdf *fdf, t_keys *keys);
 void		colors_actions(t_fdf *fdf, t_keys *keys);
+void		z_coordinate(t_fdf *fdf, t_keys *keys);
+void		key_down_hook_2(int key, t_keys *keys);
+void		key_down_hook_1(int key, t_keys *keys);
+void		key_up_hook_1(int key, t_keys *keys);
+void		key_up_hook_2(int key, t_keys *keys);
+int			check_file(char *path);
+t_map		null_map(void);
+void		swapp(t_point *p1, t_point *p2);
+
 #endif

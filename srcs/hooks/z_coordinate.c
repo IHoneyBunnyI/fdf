@@ -57,33 +57,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xiaolin.h"
+#include "fdf.h"
 
-int	ipart_(double x)
+void	z_coordinate(t_fdf *fdf, t_keys *keys)
 {
-	return ((int)x);
-}
-
-int	round_(int x)
-{
-	return ((int)(((double)(x)) + 0.5));
-}
-
-double	fpart_(double x)
-{
-	return (((double)(x)) - (double)ipart_(x));
-}
-
-double	rfpart_(double x)
-{
-	return (1.0 - fpart_(x));
-}
-
-void	_dla_changebrightness(t_rgb_color *from, t_rgb_color *to, float br)
-{
-	if (br > 1.0)
-		br = 1.0;
-	to->red = br * (float)from->red;
-	to->green = br * (float)from->green;
-	to->blue = br * (float)from->blue;
+	if (keys->shift && keys->plus)
+	{
+		if (fdf->camera->z_coefficient < 10)
+			fdf->camera->z_coefficient += 0.05;
+	}
+	if (keys->shift && keys->minus)
+	{
+		if (fdf->camera->z_coefficient > -0.5)
+			fdf->camera->z_coefficient -= 0.05;
+	}
 }

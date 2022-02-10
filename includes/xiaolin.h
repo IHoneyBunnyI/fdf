@@ -83,12 +83,13 @@ typedef struct s_floatdx
 
 typedef struct s_xiaolin
 {
-	t_point		*p1;
-	t_point		*p2;
-	t_point		*cur;
-	t_point		*delta;
-	t_floatdx	*c;
-
+	t_point		p1;
+	t_point		p2;
+	t_point		cur;
+	t_point		delta;
+	t_floatdx	c;
+	int			x;
+	int			y;
 }	t_xiaolin;
 
 int		ipart_(double x);
@@ -101,7 +102,9 @@ void	fill_floatdx_p1x_1(t_floatdx *c, t_point p1);
 void	fill_floatdx_p2y_1(t_floatdx *c, t_point p1);
 void	fill_floatdx_p1x_2(t_floatdx *c, t_point p1);
 void	fill_floatdx_p2y_2(t_floatdx *c, t_point p2);
-void	draw_line_xiaolin_wu_util_1_1(t_fdf *fdf, t_xiaolin *xiaolin);
+//void	draw_line_xiaolin_wu_util_1_1(t_fdf *fdf, t_xiaolin *xiaolin);
+void	fuck_norminette_1(t_fdf *fdf, t_xiaolin*, t_point p1, t_point p2);
+void	fuck_norminette_2(t_fdf *fdf, t_xiaolin*, t_point p1, t_point p2);
 void	plot_(t_mlx *mlx, t_xy dot, double d, int c);
 
 #endif

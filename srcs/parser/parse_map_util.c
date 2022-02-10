@@ -57,33 +57,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xiaolin.h"
+#include "fdf.h"
 
-int	ipart_(double x)
+int	check_file(char *path)
 {
-	return ((int)x);
+	int	i;
+
+	i = 0;
+	while (path[i])
+		i++;
+	if (path[i - 1] != 'f' || path[i -2] != 'd' || \
+		path[i - 3] != 'f' || path[i - 4] != '.')
+		return (ERROR);
+	return (0);
 }
 
-int	round_(int x)
+int	ft_min(int a, int b)
 {
-	return ((int)(((double)(x)) + 0.5));
+	if (a > b)
+		return (a);
+	return (b);
 }
 
-double	fpart_(double x)
+t_map	null_map(void)
 {
-	return (((double)(x)) - (double)ipart_(x));
-}
+	t_map	map;
 
-double	rfpart_(double x)
-{
-	return (1.0 - fpart_(x));
-}
-
-void	_dla_changebrightness(t_rgb_color *from, t_rgb_color *to, float br)
-{
-	if (br > 1.0)
-		br = 1.0;
-	to->red = br * (float)from->red;
-	to->green = br * (float)from->green;
-	to->blue = br * (float)from->blue;
+	map.map = 0;
+	return (map);
 }

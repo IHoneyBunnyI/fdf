@@ -98,5 +98,6 @@ int	main(int ac, char **av)
 	hooks(&mlx, &map, &keys, &fdf);
 	mlx_loop_hook(mlx.ptr, &draw, &fdf);
 	free_split(map.map);
+	map.map = 0;
 	mlx_loop(mlx.ptr);
 }

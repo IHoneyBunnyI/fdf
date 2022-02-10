@@ -102,9 +102,8 @@ void	fill_floatdx_p1x_1(t_floatdx *c, t_point p1);
 void	fill_floatdx_p2y_1(t_floatdx *c, t_point p1);
 void	fill_floatdx_p1x_2(t_floatdx *c, t_point p1);
 void	fill_floatdx_p2y_2(t_floatdx *c, t_point p2);
-//void	draw_line_xiaolin_wu_util_1_1(t_fdf *fdf, t_xiaolin *xiaolin);
-void	fuck_norminette_1(t_fdf *fdf, t_xiaolin*, t_point p1, t_point p2);
-void	fuck_norminette_2(t_fdf *fdf, t_xiaolin*, t_point p1, t_point p2);
+void	fuck_norminette_1(t_fdf *fdf, t_xiaolin *p, t_point p1, t_point p2);
+void	fuck_norminette_2(t_fdf *fdf, t_xiaolin *p, t_point p1, t_point p2);
 void	plot_(t_mlx *mlx, t_xy dot, double d, int c);
 
 #endif

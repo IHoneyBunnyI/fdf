@@ -67,6 +67,7 @@ typedef struct keys
 	char k;
 	char l;
 	char ctrl;
+	char option;
 	char mouse_zoom;
 	char left_mouse;
 	char right_mouse;

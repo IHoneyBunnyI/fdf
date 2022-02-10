@@ -54,7 +54,7 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 	else if (keys->gamma_rotate)
 		fdf->camera->gamma += 0.01;
 	//инвертировать цвет
-	if (!keys->shift && !keys->ctrl && keys->invert_color)
+	if (!keys->option && !keys->shift && !keys->ctrl && keys->invert_color)
 	{
 		t_point **points;
 		points = fdf->points;
@@ -109,7 +109,7 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 			fdf->camera->z_coefficient -= 0.05;
 	}
 	// вернуть первоначальные цвета
-	if (keys->is_isometric)
+	if ((keys->is_isometric) || (keys->option && keys->invert_color))
 	{
 		for (int i = 0; i < fdf->map->height_map; i++)
 		{
@@ -119,6 +119,7 @@ void check_keys(t_fdf *fdf, t_keys *keys)
 					fdf->points[i][j].color = fdf->points[i][j].first_color;
 			}
 		}
+		keys->invert_color = 0;
 	}
 	//обработка зума мышкой
 	static int time = 0;

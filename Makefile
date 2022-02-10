@@ -21,8 +21,12 @@ FILES =	color.c\
 		get_next_line.c\
 		get_next_line_utils.c\
 		check_keys.c\
+		colors_actions.c\
 		keyboard_hooks.c\
 		mouse_hooks.c\
+		rotate_R.c\
+		translate.c\
+		zoom.c\
 		parse_map.c\
 		parse_points.c\
 		utils_parser.c\

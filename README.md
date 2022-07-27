@@ -17,7 +17,7 @@ The coordinates of the landscape are stored in a `*.fdf` file passed as a parame
 0 0 0 0 0 0 0 0 0 1,0xFF00FF 2
 0 0 0 0 0 0 0 0 0 0 1,0xFF00FF
 ```
-<img src="basic_test.png" alt="drawing" width="800"/>
+<img src="basic_test.png" alt="drawing" width="600"/>
 
 ## Usage
 
